@@ -9,12 +9,222 @@ Warcraft Character Tracker HTML
 <html>
     
 <head>
+    <!-- My meta declarations for the index.html page -->
+    <meta charset="utf-8" /> 
+    <meta name="viewport" content="width=device-width, user-scalable=no" />
+    <meta name="robots" content="index,follow" />
+    <meta name="description" content="An easy and quick way to track your Video Game Collection" />
+    <meta name="keywords" content="Games,Video Games,Tracking,Catalogue" />
+    <meta name="author" content="Kyle Kauck" />
+    <link rel="stylesheet" type="text/css" href="css/jquery.mobile-1.3.1.min.css"
     <link rel="stylesheet" type="text/css" href="css/styles.css" />
-    <title></title>
+    <title>My Personal WoW</title>
 </head>
 
 <body>
+    <!-- Index Page -->
+    <section data-role="page" data-add-back-btn="true" data-theme="a" id="index">
+        
+        <header data-role="header" data-position="fixed" data-theme="a">   
+            <h1>My Personal WoW Database!</h1>
+        </header>
+
+        <section data-role="content" data-theme="a">
+            
+            <section id="cta">
+                <a href="#addCharacter"><img src="img/cta.png" /></a>
+            </section>
+            
+            <section data-role="fieldcontain" id="search">
+                <input type="search" id="toonSearch" value="Search for a character..."
+            </section>
+            
+            <section data-role="collapsible-set" data-theme="a">
+                <h3>Browse Character By Role</h3>
+                
+                <section data-role="collapsible" data-theme="a">
+                    <h3>Tank</h3>
+                </section>
+                
+                <section data-role="collapsible" data-theme="a">
+                    <h3>Healer</h3>
+                </section>
+                
+                <section data-role="collapsible" data-theme="a">
+                    <h3>DPS</h3>
+                </section>
+            </section>
+            
+        </section>
+        
+        <footer data-role="footer" data-position="fixed" data-theme="a">
+            
+            <section data-role="navbar">
+                <ul>
+                    <li><a href="#index" data-icon="home" data-iconpos="top" class="ui-btn-active ui-state-persist">Home</a></li>
+		    <li><a href="#addCharacter" data-icon="info" data-iconpos="top">Add Character</a></li>
+		    <li><a href="#display" data-icon="star" data-iconpos="top">Display Characters</a></li>
+                </ul>
+            </section>
+            
+        </footer>
+        
+    </section>
+    
+    <!-- Add Character Page -->
+    <section data-role="page" data-add-back-btn="true" data-theme="a" id="addCharacter">
+        
+        <header data-role="header" data-position="fixed" data-theme="a">
+            <h1>Add A Character!</h1>
+        </header>
+        
+        <section data-role="content" data-theme="a">
+            
+            <form action="" id="characterAdd">
+                
+                <span id="required">
+                    * Denotes A Required Field
+                </span>
+                
+                <section data-role="fieldcontain">
+                    <label for="characterName">* Character Name:</label>
+                    <input type="text" name="characterName" id="characterName" autocomplete="off" class="required" placeholder="Please enter your characters name..." />
+                </section>
+                
+                <section data-role="fieldcontain">
+                    <label for="serverName">* Server Name:</label>
+                    <input type="text" name="serverName" id="serverName" autocomplete="off" class="required" placeholder="Please eneter the server name..." />
+                </section>
+                
+                <section data-role="fieldcontain">
+                    <label for="race">* Race:</label>
+                    <select name="race" id="race" autocomplete="off" data-native-menu="false" class="required" />
+                        <option data-place-holder="true">--Please Select A Race--</option>
+                        <option data-place-holder="true">Alliance Races</option>
+                        <option value="Human">Human</option>
+                        <option value="Night Elf">Night Elf</option>
+                        <option value="Dwarf">Dwarf</option>
+                        <option value="Gnome">Gnome</option>
+                        <option value="Worgen">Worgen</option>
+                        <option value="Draenei">Draenei</option>
+                        <option value="Pandaren">Pandaren</option>
+                        <option data-place-holder="true">Horde Races</option>
+                        <option value="Orc">Orc</option>
+                        <option value="Blood Elf">Blood Elf</option>
+                        <option value="Troll">Troll</option>
+                        <option value="Undead">Undead</option>
+                        <option value="Tauren">Tauren</option>
+                        <option value="Goblin">Goblin</option>
+                        <option value="Pandaren">Pandaren</option>
+                    </select>
+                </section>
+                
+                <section data-role="fieldcontain">
+                    <label for="class">* Class:</label>
+                    <select name="class" id="class" autocomplete="off" data-native-menu="false" class="required">
+                        <option data-place-holder="true">--Please Select A Class--</option>
+                        <option value="Warrior">Warrior</option>
+                        <option value="Rogue">Rogue</option>
+                        <option value="Paladin">Paladin</option>
+                        <option value="Monk">Monk</option>
+                        <option value="Death Knight">Death Knight</option>
+                        <option value="Mage">Mage</option>
+                        <option value="Warlock">Warlock</option>
+                        <option value="Priest">Priest</option>
+                        <option value="Druid">Druid</option>
+                        <option value="Shaman">Shaman</option>
+                        <option value="Hunter">Hunter</option>
+                    </select>
+                </section>
+                
+                <section data-role="fieldcontain">
+                    <label for="role">* Role:</label>
+                    <select name="role" id="role" auntocomplete="off" data-native-menu="false" class="required">
+                        <option data-place-holder="true">--Please Select A Role--</option>
+                        <option value="Tank">Tank</option>
+                        <option value="Healer">Healer</option>
+                        <option value="DPS">DPS</option>
+                    </select>
+                </section>
+                
+                <section data-role="fieldcontain">
+                    <label for="specialization">* Specialization</label>
+                    <input type="text" name="specialization" id="specialization" autocomplete="off" class="required" placeholder="Please enter a class specialization..." />
+                </section>
+                
+                <section data-role="fieldcontain">
+                    <label for="level">* Level:</label>
+                    <input type="range" name="level" id="level" min="1" max="90" value="6" />
+                </section>
+                
+                <section data-role="fieldcontain">
+                    <label for="itemLevel">Item Level:</label>
+                    <input type="text" name="itemLevel" id="itemLevel" autocomplete="off" placeholder="Please enter your characters item level..." />
+                </section>
+                
+                <section data-role="fieldcontain">
+                    <label for="professions">Professions:</label>
+                    <textarea name="professions" id="professions" autocomplete="off" placeholder="Please enter any professions and their level here..." />
+                </section>
+                
+                <section data-role="fieldcontain">
+                    <label for="extraInfo">Additional Information:</label>
+                    <textarea name="extraInfo" id="extraInfo" autocomplete="off" placeholder="Please enter any additional information you want here..." />
+                </section>
+                
+                <section class="ui-grid-solo">
+                    <section class="ui-block-a">
+                        <input type="submit" value="Add My Game!" id="submitGame" data-theme="a" />
+                    </section>
+                </section>
+                
+            </form>
+            
+        </section>
+    
+        <footer data-role="footer" data-position="fixed" data-theme="a">
+            
+            <section data-role="navbar">
+                <ul>
+                    <li><a href="#index" data-icon="home" data-iconpos="top">Home</a></li>
+		    <li><a href="#addCharacter" data-icon="info" data-iconpos="top" class="ui-btn-active ui-state-persist">Add Character</a></li>
+		    <li><a href="#display" data-icon="star" data-iconpos="top">Display Characters</a></li>
+                </ul>
+            </section>
+            
+        </footer>
+        
+    </section>
+    
+    <!-- Display Page -->
+    <section data-role="page" data-add-back-btn="true" data-theme="a" id="display">
+        
+        <header data-role="header" data-position="fixed" data-theme="a">   
+            <h1>Warcraft Character Display!</h1>
+        </header>
+
+        <section data-role="content" data-theme="a">
+            
+        </section>
+        
+        <footer data-role="footer" data-position="fixed" data-theme="a">
+            
+            <section data-role="navbar">
+                <ul>
+                    <li><a href="#index" data-icon="home" data-iconpos="top" class="ui-btn-active ui-state-persist">Home</a></li>
+		    <li><a href="#addCharacter" data-icon="info" data-iconpos="top">Add Character</a></li>
+		    <li><a href="#display" data-icon="star" data-iconpos="top">Display Characters</a></li>
+                </ul>
+            </section>
+            
+        </footer>
+        
+    </section>
+    
+    <!-- Scripts -->
+    <script src="js/jquery-2.0.3.min.js" language="javascript" type="text/javascript"></script>
     <script src="js/main.js" language="javascript" type="text/javascript"></script>
+    <script src="js/jquery.mobile-1.3.1.min.js" language="javascript" type="text/javascript"></script>
 </body>
 
 </html>
