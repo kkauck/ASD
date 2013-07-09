@@ -1,0 +1,5 @@
+/*
+ *Kyle Kauck
+ *ASD 1307
+ *Warcraft Character Tracker Javascript
+*/
