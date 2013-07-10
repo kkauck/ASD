@@ -523,6 +523,6 @@ a.ui-link-inherit {
 }
 
 .ui-header .ui-title {
-	padding-left: 0px;
-	padding-right: 0px;
+	padding-left: -15px;
+	padding-right: -15px;
 }
