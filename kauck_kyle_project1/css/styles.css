@@ -515,4 +515,8 @@ a.ui-link-inherit {
 	outline-width: 1px;
 	outline-style: auto;
 }
-			
+
+/* Custom CSS */
+#cta {
+	text-align: center;
+}
