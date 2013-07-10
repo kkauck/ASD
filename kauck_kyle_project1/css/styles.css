@@ -521,3 +521,8 @@ a.ui-link-inherit {
 	text-align: center;
 	margin-top: 15px;
 }
+
+.ui-header .ui-title {
+	padding-left: 10px;
+	padding-right: 10px;
+}
