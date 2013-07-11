@@ -522,10 +522,7 @@ a.ui-link-inherit {
 	margin-top: 5px;
 }
 
-#header {
-	text-align: center;
-}
-
 .ui-header .ui-title {
 	overflow: visible;
+	padding-left: 0px;
 }
