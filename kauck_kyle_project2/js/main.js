@@ -44,11 +44,11 @@ $("#addCharacter").on("pageinit", function() {
             specialization :[$("#specialization").val()],
             level          :[$("#level").val()],
             itemLevel      :[$("#itemLevel").val()],
-            professions    :[$("#professions")],
-            extraInfo      :[$("#extraInfo")]
+            professions    :[$("#professions").val()],
+            extraInfo      :[$("#extraInfo").val()]
         };
         localStorage.setItem(idGenerator, JSON.stringify(toonLibrary));
-        alert("Game Information Has Been Saved!");
+        alert("Your Toon Inforamtion Has Been Saved!");
         
     };
 
