@@ -28,18 +28,18 @@ $("#addCharacter").on("pageinit", function() {
     });
     
     storeToon = function (data, toonKey) {
+        
         if (!toonKey) {
-            var idGenerator = Math.floor(Math.random()*1000000000);
+            var idGen = Math.floor(Math.random()*1000000000);
         } else {
-            idGenerator = toonKey;    
+            idGen = toonKey;    
         }
-                
-        var idGenerator = Math.floor(Math.random()*1000000000);
+        
         var toonLibrary = {
             characterName  :[$("#characterName").val()],
             serverName     :[$("#serverName").val()],
             race           :[$("#race").val()],
-            class          :[$("#class").val()],
+            toonClass      :[$("#class").val()],
             role           :[$("#role").val()],
             specialization :[$("#specialization").val()],
             level          :[$("#level").val()],
@@ -47,7 +47,10 @@ $("#addCharacter").on("pageinit", function() {
             professions    :[$("#professions").val()],
             extraInfo      :[$("#extraInfo").val()],
         };
-        localStorage.setItem(idGenerator, JSON.stringify(toonLibrary));
+        
+        console.log(idGen);
+        
+        localStorage.setItem(idGen, JSON.stringify(toonLibrary));
         alert("Your Toon Inforamtion Has Been Saved!");
         
     };
@@ -77,36 +80,38 @@ $("#display").on("pageinit", function (toonLibrary) {
             $("<li class='toonDisplayInfo'>" + toonInfoText + "</li>").appendTo(".toonDisplay:last");
         };
         //Saves the key to a data-role in the button
-        $(".toonDisplay:last").append("<button id='deleteToon' data-key=" + toonID + ">Delete This Toon</button>");
-        $(".toonDisplay:last").append("<button id='editToon' data-key=" + toonID + ">Edit This Toon</button>");
+        $(".toonDisplay:last").append("<button class='deleteToon' data-key=" + toonID + ">Delete This Toon</button>");
+        $(".toonDisplay:last").append("<button class='editToon' data-key=" + toonID + ">Edit This Toon</button>");
     };
     
-    $("#deleteToon").on("click", function (){
+    $(".deleteToon").on("click", function (){
 
         var confirmDelete = confirm("Please confirm that you would like to delete this game.");
             if (confirmDelete) {
                 //Pulls the Key for selected item in Local Storage
                 localStorage.removeItem($(this).attr('data-key'));
                 alert("This game was successfully deleted from storage.")
-                window.location.reload('refresh');
+                window.location.reload();
             } else {
                 alert("Your game was not deleted.");
             }
     });
         
-    $("#editToon").on("click", function() {
+    $(".editToon").on("click", function() {
         
         window.location = '#addCharacter'
         
+        var toonKey = $(this).attr('data-key');
         var toonInfo = localStorage.getItem($(this).attr('data-key'));
         var toonLibrary = JSON.parse(toonInfo);
     
         console.log(toonLibrary);
+        console.log(toonKey)
     
         $("#characterName").val(toonLibrary.characterName[0]);
         $("#serverName").val(toonLibrary.serverName[0]);
         $("#race").val(toonLibrary.race[0]).selectmenu('refresh');
-        $("#class").val(toonLibrary.class[0]).selectmenu('refresh');
+        $("#class").val(toonLibrary.toonClass[0]).selectmenu('refresh');
         $("#role").val(toonLibrary.role[0]).selectmenu('refresh');
         $("#specialization").val(toonLibrary.specialization[0]);
         $("#level").val(toonLibrary.level[0]).slider('refresh');
@@ -114,10 +119,12 @@ $("#display").on("pageinit", function (toonLibrary) {
         $("#professions").val(toonLibrary.professions[0]);
         $("#extraInfo").val(toonLibrary.extraInfo[0]);
         
-        /*//saveInfo.removeEventListener("click", storeData);
-        $("#submitGame").val("Edit My Game!");
-        $("#submitGame").button('refresh');
-        var gameEditor = $("#submitGame");
+        //saveInfo.removeEventListener("click", storeData);
+        $("#submitCharacter").val("Edit My Toon!");
+        $("#submitCharacter").button('refresh');
+        //$("#submitCharacter").on("click", storeToon);
+
+        /*var gameEditor = $("#submitGame");
         //gameEditor.addEventListener("click", fieldCheck);
         gameEditor.key = this.key;*/
             
