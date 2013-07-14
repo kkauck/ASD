@@ -40,7 +40,7 @@ $("#addCharacter").on("pageinit", function() {
             serverName     :[$("#serverName").val()],
             race           :[$("#race").val()],
             class          :[$("#class").val()],
-            roll           :[$("#role").val()],
+            role           :[$("#role").val()],
             specialization :[$("#specialization").val()],
             level          :[$("#level").val()],
             itemLevel      :[$("#itemLevel").val()],
@@ -54,8 +54,9 @@ $("#addCharacter").on("pageinit", function() {
 
 });
 
-$("#display").on("pageinit", function () {
+$("#display").on("pageinit", function (toonLibrary) {
     
+    console.log (toonLibrary);
    
     if(localStorage.length === 0){
 	alert("You currently have no toons saved in local storage.");
@@ -95,8 +96,31 @@ $("#display").on("pageinit", function () {
         
     $("#editToon").on("click", function() {
         
-        $("#editToon").load('#addCharacter');
+        window.location = '#addCharacter'
         
-    });
+        var toonInfo = localStorage.getItem($(this).attr('data-key'));
+        var toonLibrary = JSON.parse(toonInfo);
+    
+        console.log(toonLibrary);
+    
+        $("#characterName").val(toonLibrary.characterName[0]);
+        $("#serverName").val(toonLibrary.serverName[0]);
+        $("#race").val(toonLibrary.race[0]).selectmenu('refresh');
+        $("#class").val(toonLibrary.class[0]).selectmenu('refresh');
+        $("#role").val(toonLibrary.role[0]).selectmenu('refresh');
+        $("#specialization").val(toonLibrary.specialization[0]);
+        $("#level").val(toonLibrary.level[0]).slider('refresh');
+        $("#itemLevel").val(toonLibrary.itemLevel[0]);
+        $("#professions").val(toonLibrary.professions[0]);
+        $("#extraInfo").val(toonLibrary.extraInfo[0]);
+        
+        /*//saveInfo.removeEventListener("click", storeData);
+        $("#submitGame").val("Edit My Game!");
+        $("#submitGame").button('refresh');
+        var gameEditor = $("#submitGame");
+        //gameEditor.addEventListener("click", fieldCheck);
+        gameEditor.key = this.key;*/
+            
+        });
 
 });
