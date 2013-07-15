@@ -68,21 +68,36 @@ $("#display").on("pageinit", function (toonLibrary) {
     $("#displayList").append("<ul class='gameListUL'></ul>")
 
     for (var i = 0, f = localStorage.length; i < f; i++) {
-        $(".gameListUL").append("<li class='holdingLI'></li>");
-        $("<ul class='toonDisplay'></ul>").appendTo(".holdingLI:last");
+        
         var toonID = localStorage.key(i);
         var toonValue = localStorage.getItem(toonID);
         console.log (toonID);
         var toonInfo = JSON.parse(toonValue);
-        for (var x in toonInfo) {
-            var toonInfoText = toonInfo[x][0];
-            console.log (toonInfoText)
-            $("<li class='toonDisplayInfo'>" + toonInfoText + "</li>").appendTo(".toonDisplay:last");
-        };
+
         //Saves the key to a data-role in the button
-        $(".toonDisplay:last").append("<button class='deleteToon' data-key=" + toonID + ">Delete This Toon</button>");
-        $(".toonDisplay:last").append("<button class='editToon' data-key=" + toonID + ">Edit This Toon</button>");
+        console.log(toonInfo.characterName[0])
+        var toonList = $("<li></li>");
+        var toonListInfo = $(
+            "<img src='img/paladin.png'>"+
+            "<h3>" + toonInfo.characterName[0] + "</h3>"+
+            "<p><strong>" + toonInfo.serverName[0] + "</strong></p>"+
+            "<p>" + toonInfo.race[0] + "</p>"+
+            "<p>" + toonInfo.toonClass[0] + "</p>"+
+            "<p>" + toonInfo.role[0] + "</p>"+
+            "<p>" + toonInfo.specialization[0] + "</p>"+
+            "<p>" + toonInfo.level[0] + "</p>"+
+            "<p>" + toonInfo.itemLevel[0] + "</p>"+
+            "<p>" + toonInfo.professions[0] + "</p>"+
+            "<p>" + toonInfo.extraInfo[0] + "</p>"+
+            "<a href='#' class='deleteToon' data-key=" + toonID + ">Delete This Toon</a>"
+        )
+        var deleteButton = $("<a href='#' class='deleteToon' data-key=" + toonID + ">Delete This Toon</a>");
+        var editLink = $("<a href='#' class='editToon' data-key=" + toonID + ">Edit This Toon</a>");
+        editButton.html(toonListInfo);
+        toonList.append(editLink).appendTo("#toonDisplay");
     };
+    
+    $("#toonDisplay").listview('refresh');
     
     $(".deleteToon").on("click", function (){
 
@@ -94,6 +109,7 @@ $("#display").on("pageinit", function (toonLibrary) {
                 window.location.reload();
             } else {
                 alert("Your game was not deleted.");
+                window.location.reload("#index");
             }
     });
         
