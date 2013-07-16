@@ -1,0 +1,40 @@
+{
+    "toonInfo": [
+        {
+            "characterName"   : "Vyndree",
+            "serverName"      : "Area 52",
+            "race"            : "Blood Elf",
+            "toonClass"       : "Paladin",
+            "role"            : "Tank",
+            "specialization"  : "Protection",
+            "level"           : "90",
+            "itemLevel"       : "480",
+            "professions"     : "Alchemy, Enchanting",
+            "extraInfo"       : "One fine tank!"
+        },
+        {
+            "characterName"   : "Vyndree",
+            "serverName"      : "Area 52",
+            "race"            : "Blood Elf",
+            "toonClass"       : "Paladin",
+            "role"            : "Tank",
+            "specialization"  : "Protection",
+            "level"           : "90",
+            "itemLevel"       : "480",
+            "professions"     : "Alchemy, Enchanting",
+            "extraInfo"       : "One fine tank!"
+        },
+        {
+            "characterName"   : "Vyndree",
+            "serverName"      : "Area 52",
+            "race"            : "Blood Elf",
+            "toonClass"       : "Paladin",
+            "role"            : "Tank",
+            "specialization"  : "Protection",
+            "level"           : "90",
+            "itemLevel"       : "480",
+            "professions"     : "Alchemy, Enchanting",
+            "extraInfo"       : "One fine tank!"
+        }
+    ]
+}

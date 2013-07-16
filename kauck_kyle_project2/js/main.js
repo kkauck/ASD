@@ -114,7 +114,7 @@ $("#index").on("pageinit", function(){
         alert("this worked")
         
         $.ajax({
-            url: "xhr/data.js",
+            url: "xhr/data.json",
             type: "GET",
             dataType: "json",
             success: function(response) {
