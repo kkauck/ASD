@@ -6,14 +6,14 @@
 
 $("#index").on("pageinit", function(){
     
-    for (var i = 0, f = localStorage.length; i < f; i++) {
+    /*for (var i = 0, f = localStorage.length; i < f; i++) {
         
         var toonID = localStorage.key(i);
         var toonValue = localStorage.getItem(toonID);
         var toonInfo = JSON.parse(toonValue);
         
         //Dynamically generates image based on toons class
-        /*if (toonInfo.toonClass[0] === "Warrior") {
+        if (toonInfo.toonClass[0] === "Warrior") {
             var imgTag = "<img src='img/warrior.png' />"
         } else if (toonInfo.toonClass[0] === "Paladin") {
                 var imgTag = "<img src='img/paladin.png' />"
@@ -35,7 +35,7 @@ $("#index").on("pageinit", function(){
                 var imgTag = "<img src='img/mage.png' />"
         } else if (toonInfo.toonClass[0] === "Hunter") {
                 var imgTag = "<img src='img/hunter.png />"
-        }*/
+        }
         
         if (toonInfo.role[0] === "Tank") {
         
@@ -109,7 +109,7 @@ $("#index").on("pageinit", function(){
     $("#healerDisplay").listview('refresh');
     $("#dpsDisplay").listview('refresh');
     
-});
+});*/
 
 $("#addCharacter").on("pageinit", function() {
     
