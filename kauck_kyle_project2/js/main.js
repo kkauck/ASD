@@ -118,7 +118,7 @@ $("#index").on("pageinit", function(){
             type: "GET",
             dataType: "json",
             success: function(response) {
-                console.log(response);
+                console.log(response.toonInfo[1].characterName);
             },
             error: function(error, errorparse){
                 console.log(error, errorparse)

@@ -13,28 +13,28 @@
             "extraInfo"       : "One fine tank!"
         },
         {
-            "characterName"   : "Vyndree",
-            "serverName"      : "Area 52",
-            "race"            : "Blood Elf",
-            "toonClass"       : "Paladin",
-            "role"            : "Tank",
-            "specialization"  : "Protection",
+            "characterName"   : "Sheephappens",
+            "serverName"      : "Stormrage",
+            "race"            : "Night Elf",
+            "toonClass"       : "Mage",
+            "role"            : "DPS",
+            "specialization"  : "Fire",
             "level"           : "90",
-            "itemLevel"       : "480",
-            "professions"     : "Alchemy, Enchanting",
-            "extraInfo"       : "One fine tank!"
+            "itemLevel"       : "502",
+            "professions"     : "Alchemy, Tailoring",
+            "extraInfo"       : "I kill things fast!"
         },
         {
-            "characterName"   : "Vyndree",
+            "characterName"   : "Vyntage",
             "serverName"      : "Area 52",
-            "race"            : "Blood Elf",
-            "toonClass"       : "Paladin",
-            "role"            : "Tank",
-            "specialization"  : "Protection",
+            "race"            : "Pandaren",
+            "toonClass"       : "Priest",
+            "role"            : "Healer",
+            "specialization"  : "Holy",
             "level"           : "90",
-            "itemLevel"       : "480",
-            "professions"     : "Alchemy, Enchanting",
-            "extraInfo"       : "One fine tank!"
+            "itemLevel"       : "507",
+            "professions"     : "Tailoring, Inscription",
+            "extraInfo"       : "I keep all the noobs alive!"
         }
     ]
 }
