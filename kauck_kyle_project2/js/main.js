@@ -125,7 +125,7 @@ $("#addCharacter").on("pageinit", function() {
         submitHandler: function() {
             var data = $("#characterAdd").serializeArray();
             storeToon(data);
-            window.location.reload();
+            $.mobile.changePage('#index');
         }
     
     });
@@ -243,10 +243,10 @@ $("#display").on("pageinit", function (toonLibrary) {
                 //Pulls the Key for selected item in Local Storage
                 localStorage.removeItem($(this).attr('data-key'));
                 alert("This toon was successfully deleted from storage.")
-                window.location.reload();
+                $.mobile.changePage('#display');
             } else {
                 alert("Your toon was not deleted.");
-                window.location.reload("#index");
+                $.mobile.changePage('#display');
             }
     });
       
@@ -281,16 +281,16 @@ $("#display").on("pageinit", function (toonLibrary) {
     $("#clearData").on("click", function(){
         if(localStorage.length === 0){
             alert("You have no toons saved to storage");
-            window.location.reload("#index");
+            $.mobile.changePage('#index');
         } else {
             var confirmClear = confirm("Are you sure you want to delete all stored toons?")
             if (confirmClear) {
                 localStorage.clear();
                 alert("You have successfully cleared all stored data!");
-                window.location.reload("#display");
+                $.mobile.changePage('#index');
             } else {
                 alert("You saved data has not been deleted!");
-                window.location.reload("#index");
+                $.mobile.changePage('#display');
             }
         }
     });
