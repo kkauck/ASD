@@ -119,6 +119,9 @@ $("#index").on("pageinit", function(){
             dataType: "json",
             success: function(response) {
                 console.log(response);
+            },
+            error: function(error, errorparse){
+                console.log(error, errorparse)
             }
         });
         
