@@ -111,14 +111,16 @@ $("#index").on("pageinit", function(){
     
     $(".loadJSON").on("click", function(){
         
-        alert("this worked")
-        
         $.ajax({
             url: "xhr/data.json",
             type: "GET",
             dataType: "json",
-            success: function(response) {
-                console.log(response.toonInfo[1].characterName);
+            success: function(toonData) {
+                for (var a=0, b=toonData.toonInfo.length; a<b; a++)
+                    idGen = Math.floor(Math.random()*1000000000);
+                    console.log(a + b)
+                alert ("JSON Data has been successfully loaded into storage!");
+                //console.log(response.toonInfo[1].characterName);
             },
             error: function(error, errorparse){
                 console.log(error, errorparse)
