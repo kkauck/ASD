@@ -117,8 +117,8 @@ $("#index").on("pageinit", function(){
             url: "xhr/data.js",
             type: "GET",
             dataType: "json",
-            success: function(data) {
-                console.log(data);
+            success: function(response) {
+                console.log(response);
             }
         });
         
