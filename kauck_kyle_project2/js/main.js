@@ -125,7 +125,7 @@ $("#addCharacter").on("pageinit", function() {
         submitHandler: function() {
             var data = $("#characterAdd").serializeArray();
             storeToon(data);
-            $.mobile.changePage('#index');
+            window.loction.reload();
         }
     
     });
