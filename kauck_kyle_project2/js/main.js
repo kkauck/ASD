@@ -109,7 +109,9 @@ $("#index").on("pageinit", function(){
     $("#healerDisplay").listview('refresh');
     $("#dpsDisplay").listview('refresh');
     
-    //$(".loadJSON").on("click", function(){
+    $(".loadJSON").on("click", function(){
+        
+        alert("this worked")
         
         $.ajax({
             url: "xhr/data.js",
@@ -120,7 +122,7 @@ $("#index").on("pageinit", function(){
             }
         });
         
-    //});
+    });
     
 });
 
