@@ -13,7 +13,7 @@ $("#index").on("pageinit", function(){
         var toonInfo = JSON.parse(toonValue);
         
         //Dynamically generates image based on toons class
-        if (toonInfo.toonClass[0] === "Warrior") {
+        /*if (toonInfo.toonClass[0] === "Warrior") {
             var imgTag = "<img src='img/warrior.png' />"
         } else if (toonInfo.toonClass[0] === "Paladin") {
                 var imgTag = "<img src='img/paladin.png' />"
@@ -35,7 +35,7 @@ $("#index").on("pageinit", function(){
                 var imgTag = "<img src='img/mage.png' />"
         } else if (toonInfo.toonClass[0] === "Hunter") {
                 var imgTag = "<img src='img/hunter.png />"
-        }
+        }*/
         
         if (toonInfo.role[0] === "Tank") {
         
@@ -179,7 +179,7 @@ $("#display").on("pageinit", function (toonLibrary) {
         var toonInfo = JSON.parse(toonValue);
         
         //Dynamically generates images based on the toons class
-        if (toonInfo.toonClass[0] === "Warrior") {
+        /*if (toonInfo.toonClass[0] === "Warrior") {
             var imgTag = "<img src='img/warrior.png' />"
         } else if (toonInfo.toonClass[0] === "Paladin") {
                 var imgTag = "<img src='img/paladin.png' />"
@@ -201,7 +201,7 @@ $("#display").on("pageinit", function (toonLibrary) {
                 var imgTag = "<img src='img/mage.png' />"
         } else if (toonInfo.toonClass[0] === "Hunter") {
                 var imgTag = "<img src='img/hunter.png />"
-        }
+        }*/
 
         //Saves the key to a data-role in the button
         console.log(toonInfo.characterName[0] + "'s ID is: " + toonID);
