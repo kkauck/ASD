@@ -107,9 +107,9 @@ $("#index").on("pageinit", function(){
     
     $("#tankDisplay").listview('refresh');
     $("#healerDisplay").listview('refresh');
-    $("#dpsDisplay").listview('refresh');
+    $("#dpsDisplay").listview('refresh');*/
     
-});*/
+});
 
 $("#addCharacter").on("pageinit", function() {
     
