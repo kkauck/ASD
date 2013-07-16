@@ -118,7 +118,9 @@ $("#index").on("pageinit", function(){
             success: function(toonData) {
                 for (var a=0, b=toonData.toonInfo.length; a<b; a++)
                     idGen = Math.floor(Math.random()*1000000000);
-                    console.log(a + b)
+                    var toonLibrary = toonData.toonInfo[a];
+                    localStorage.setItem(idGen, JSON.stringify(toonLibrary));
+                    console.log(toonLibrary)
                 alert ("JSON Data has been successfully loaded into storage!");
                 //console.log(response.toonInfo[1].characterName);
             },
