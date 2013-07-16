@@ -5,7 +5,86 @@
 */
 
 $("#index").on("pageinit", function(){
-    //...
+    
+    for (var i = 0, f = localStorage.length; i < f; i++) {
+        
+        var toonID = localStorage.key(i);
+        var toonValue = localStorage.getItem(toonID);
+        var toonInfo = JSON.parse(toonValue);
+        if (toonInfo.role[0] === "Tank") {
+        
+        //Saves the key to a data-role in the button
+            console.log(toonInfo.characterName[0] + "'s ID is: " + toonID);
+            var toonList = $("<li></li>");
+            var toonListInfo = $(
+                "<img src='img/paladin.png'>"+
+                "<h3>" + toonInfo.characterName[0] + "</h3>"+
+                "<h4>" + toonInfo.serverName[0] + "</h4>"+
+                "<p>" + toonInfo.race[0] + "</p>"+
+                "<p>" + toonInfo.toonClass[0] + "</p>"+
+                "<p>" + toonInfo.role[0] + "</p>"+
+                "<p>" + toonInfo.specialization[0] + "</p>"+
+                "<p>" + toonInfo.level[0] + "</p>"+
+                "<p>" + toonInfo.itemLevel[0] + "</p>"+
+                "<p>" + toonInfo.professions[0] + "</p>"+
+                "<p>" + toonInfo.extraInfo[0] + "</p>"
+            )
+            
+            
+            toonList.html(toonListInfo);
+            toonList.appendTo("#tankDisplay");
+        
+        } else if (toonInfo.role[0] === "Healer") {
+            
+            console.log(toonInfo.characterName[0] + "'s ID is: " + toonID);
+            var toonList = $("<li></li>");
+            var toonListInfo = $(
+                "<img src='img/paladin.png'>"+
+                "<h3>" + toonInfo.characterName[0] + "</h3>"+
+                "<h4>" + toonInfo.serverName[0] + "</h4>"+
+                "<p>" + toonInfo.race[0] + "</p>"+
+                "<p>" + toonInfo.toonClass[0] + "</p>"+
+                "<p>" + toonInfo.role[0] + "</p>"+
+                "<p>" + toonInfo.specialization[0] + "</p>"+
+                "<p>" + toonInfo.level[0] + "</p>"+
+                "<p>" + toonInfo.itemLevel[0] + "</p>"+
+                "<p>" + toonInfo.professions[0] + "</p>"+
+                "<p>" + toonInfo.extraInfo[0] + "</p>"
+            )
+            
+            
+            toonList.html(toonListInfo);
+            toonList.appendTo("#healerDisplay"); 
+            
+        } else if (toonInfo.role[0] === "DPS") {
+            
+            console.log(toonInfo.characterName[0] + "'s ID is: " + toonID);
+            var toonList = $("<li></li>");
+            var toonListInfo = $(
+                "<img src='img/paladin.png'>"+
+                "<h3>" + toonInfo.characterName[0] + "</h3>"+
+                "<h4>" + toonInfo.serverName[0] + "</h4>"+
+                "<p>" + toonInfo.race[0] + "</p>"+
+                "<p>" + toonInfo.toonClass[0] + "</p>"+
+                "<p>" + toonInfo.role[0] + "</p>"+
+                "<p>" + toonInfo.specialization[0] + "</p>"+
+                "<p>" + toonInfo.level[0] + "</p>"+
+                "<p>" + toonInfo.itemLevel[0] + "</p>"+
+                "<p>" + toonInfo.professions[0] + "</p>"+
+                "<p>" + toonInfo.extraInfo[0] + "</p>"
+            )
+            
+            
+            toonList.html(toonListInfo);
+            toonList.appendTo("#dpsDisplay"); 
+            
+        }
+    }
+    
+    $("#tankDisplay").listview('refresh');
+    $("#healerDisplay").listview('refresh');
+    $("#dpsDisplay").listview('refresh');
+    
 });
 
 $("#addCharacter").on("pageinit", function() {
@@ -27,7 +106,11 @@ $("#addCharacter").on("pageinit", function() {
     
     });
     
-    storeToon = function (data, toonKey) {
+    storeToon = function (data) {
+        
+        var toonKey = $("#keyStorage").val();
+        
+        console.log("This ID is: " + toonKey)
         
         if (!toonKey) {
             var idGen = Math.floor(Math.random()*1000000000);
@@ -58,8 +141,6 @@ $("#addCharacter").on("pageinit", function() {
 });
 
 $("#display").on("pageinit", function (toonLibrary) {
-    
-    console.log (toonLibrary);
    
     if(localStorage.length === 0){
 	alert("You currently have no toons saved in local storage.");
@@ -71,16 +152,15 @@ $("#display").on("pageinit", function (toonLibrary) {
         
         var toonID = localStorage.key(i);
         var toonValue = localStorage.getItem(toonID);
-        console.log (toonID);
         var toonInfo = JSON.parse(toonValue);
 
         //Saves the key to a data-role in the button
-        console.log(toonInfo.characterName[0])
+        console.log(toonInfo.characterName[0] + "'s ID is: " + toonID);
         var toonList = $("<li></li>");
         var toonListInfo = $(
             "<img src='img/paladin.png'>"+
             "<h3>" + toonInfo.characterName[0] + "</h3>"+
-            "<p><strong>" + toonInfo.serverName[0] + "</strong></p>"+
+            "<h4>" + toonInfo.serverName[0] + "</h4>"+
             "<p>" + toonInfo.race[0] + "</p>"+
             "<p>" + toonInfo.toonClass[0] + "</p>"+
             "<p>" + toonInfo.role[0] + "</p>"+
@@ -92,9 +172,15 @@ $("#display").on("pageinit", function (toonLibrary) {
             "<a href='#' class='deleteToon' data-key=" + toonID + ">Delete This Toon</a>"
         )
         var deleteButton = $("<a href='#' class='deleteToon' data-key=" + toonID + ">Delete This Toon</a>");
-        var editLink = $("<a href='#' class='editToon' data-key=" + toonID + ">Edit This Toon</a>");
-        editButton.html(toonListInfo);
+        var editLink = $("<a href='#' class='editToon' id=" + toonID + ">Edit This Toon</a>");
+        editLink.html(toonListInfo);
         toonList.append(editLink).appendTo("#toonDisplay");
+        
+        editLink.on('click', function() {
+            var toonKey = this.id
+            editToon(toonKey)
+            console.log("My ID is: " + toonKey)
+        });
     };
     
     $("#toonDisplay").listview('refresh');
@@ -113,27 +199,30 @@ $("#display").on("pageinit", function (toonLibrary) {
             }
     });
         
-    $(".editToon").on("click", function() {
+    //$(".editToon").on("click", function() {
+      
+    editToon = function(toonKey){    
         
-        window.location = '#addCharacter'
+        $.mobile.changePage('#addCharacter');
         
-        var toonKey = $(this).attr('data-key');
-        var toonInfo = localStorage.getItem($(this).attr('data-key'));
+        //var toonKey = this.id;
+        var toonInfo = localStorage.getItem(toonKey);
         var toonLibrary = JSON.parse(toonInfo);
-    
-        console.log(toonLibrary);
-        console.log(toonKey)
     
         $("#characterName").val(toonLibrary.characterName[0]);
         $("#serverName").val(toonLibrary.serverName[0]);
-        $("#race").val(toonLibrary.race[0]).selectmenu('refresh');
-        $("#class").val(toonLibrary.toonClass[0]).selectmenu('refresh');
-        $("#role").val(toonLibrary.role[0]).selectmenu('refresh');
+        $("#race").val(toonLibrary.race[0]).selectmenu();
+        $("#race").selectmenu('refresh');
+        $("#class").val(toonLibrary.toonClass[0]).selectmenu();
+        $("#class").selectmenu('refresh');
+        $("#role").val(toonLibrary.role[0]).selectmenu();
+        $("#role").selectmenu('refresh');
         $("#specialization").val(toonLibrary.specialization[0]);
         $("#level").val(toonLibrary.level[0]).slider('refresh');
         $("#itemLevel").val(toonLibrary.itemLevel[0]);
         $("#professions").val(toonLibrary.professions[0]);
         $("#extraInfo").val(toonLibrary.extraInfo[0]);
+        $("#keyStorage").val(toonKey);
         
         //saveInfo.removeEventListener("click", storeData);
         $("#submitCharacter").val("Edit My Toon!");
@@ -144,6 +233,6 @@ $("#display").on("pageinit", function (toonLibrary) {
         //gameEditor.addEventListener("click", fieldCheck);
         gameEditor.key = this.key;*/
             
-        });
+    };
 
 });

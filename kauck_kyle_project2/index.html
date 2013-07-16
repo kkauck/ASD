@@ -36,22 +36,31 @@ Warcraft Character Tracker HTML
             </section>
             
             <section id="search">
-                <input type="search" id="toonSearch" placeholder="Search for a character..." />
+                <input type="search" data-role="filter" id="toonSearch" placeholder="Search for a character..." />
             </section>
             
             <section data-role="collapsible-set">
                 <h3>Browse Character By Role</h3>
                 
                 <section data-role="collapsible">
-                    <h3>Tank</h3>
+                    <h2>Tank</h2>
+		    <ul data-role="listview" id="tankDisplay" data-filter="true" data-filter-placeholder="Search for a toon...">
+		
+		    </ul>
                 </section>
                 
                 <section data-role="collapsible">
-                    <h3>Healer</h3>
+                    <h2>Healer</h2>
+		    <ul data-role="listview" id="healerDisplay" data-filter="true" data-filter-placeholder="Search for a toon...">
+		
+		    </ul>
                 </section>
                 
                 <section data-role="collapsible">
-                    <h3>DPS</h3>
+                    <h2>DPS</h2>
+		    <ul data-role="listview" id="dpsDisplay" data-filter="true" data-filter-placeholder="Search for a toon...">
+		
+		    </ul>
                 </section>
             </section>
             
@@ -224,7 +233,7 @@ Warcraft Character Tracker HTML
 
         <section data-role="content" id="displayList">
         
-	    <ul data-role="listview" id="toonDisplay">
+	    <ul data-role="listview" id="toonDisplay" data-filter="true" data-filter-placeholder="Search for a toon...">
 		
 	    </ul>
             
