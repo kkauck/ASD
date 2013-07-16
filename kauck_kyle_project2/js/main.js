@@ -11,13 +11,39 @@ $("#index").on("pageinit", function(){
         var toonID = localStorage.key(i);
         var toonValue = localStorage.getItem(toonID);
         var toonInfo = JSON.parse(toonValue);
+        
+        //Dynamically generates image based on toons class
+        if (toonInfo.toonClass[0] === "Warrior") {
+            var imgTag = "<img src='img/warrior.png' />"
+        } else if (toonInfo.toonClass[0] === "Paladin") {
+                var imgTag = "<img src='img/paladin.png' />"
+        } else if (toonInfo.toonClass[0] === "Death Knight") {
+                var imgTag = "<img src='img/deathknight.png' />"
+        } else if (toonInfo.toonClass[0] === "Druid") {
+                var imgTag = "<img src='img/druid.png' />"
+        } else if (toonInfo.toonClass[0] === "Monk") {
+                var imgTag = "<img src='img/monk.png' />"
+        } else if (toonInfo.toonClass[0] === "Warlock") {
+                var imgTag = "<img src='img/warlock.png' />"
+        } else if (toonInfo.toonClass[0] === "Shaman") {
+                var imgTag = "<img src='img/shaman.png' />"
+        } else if (toonInfo.toonClass[0] === "Rogue") {
+                var imgTag = "<img src='img/rogue.png' />"
+        } else if (toonInfo.toonClass[0] === "Priest") {
+                var imgTag = "<img src='img/priest.png' />"
+        } else if (toonInfo.toonClass[0] === "Mage") {
+                var imgTag = "<img src='img/mage.png' />"
+        } else if (toonInfo.toonClass[0] === "Hunter") {
+                var imgTag = "<img src='img/hunter.png />"
+        }
+        
         if (toonInfo.role[0] === "Tank") {
         
-        //Saves the key to a data-role in the button
-            console.log(toonInfo.characterName[0] + "'s ID is: " + toonID);
+            
+            //Creates the listview data
             var toonList = $("<li></li>");
             var toonListInfo = $(
-                "<img src='img/paladin.png'>"+
+                imgTag +
                 "<h3>" + toonInfo.characterName[0] + "</h3>"+
                 "<h4>" + toonInfo.serverName[0] + "</h4>"+
                 "<p>" + toonInfo.race[0] + "</p>"+
@@ -35,11 +61,10 @@ $("#index").on("pageinit", function(){
             toonList.appendTo("#tankDisplay");
         
         } else if (toonInfo.role[0] === "Healer") {
-            
-            console.log(toonInfo.characterName[0] + "'s ID is: " + toonID);
+
             var toonList = $("<li></li>");
             var toonListInfo = $(
-                "<img src='img/paladin.png'>"+
+                imgTag+
                 "<h3>" + toonInfo.characterName[0] + "</h3>"+
                 "<h4>" + toonInfo.serverName[0] + "</h4>"+
                 "<p>" + toonInfo.race[0] + "</p>"+
@@ -57,11 +82,10 @@ $("#index").on("pageinit", function(){
             toonList.appendTo("#healerDisplay"); 
             
         } else if (toonInfo.role[0] === "DPS") {
-            
-            console.log(toonInfo.characterName[0] + "'s ID is: " + toonID);
+
             var toonList = $("<li></li>");
             var toonListInfo = $(
-                "<img src='img/paladin.png'>"+
+                imgTag +
                 "<h3>" + toonInfo.characterName[0] + "</h3>"+
                 "<h4>" + toonInfo.serverName[0] + "</h4>"+
                 "<p>" + toonInfo.race[0] + "</p>"+
@@ -153,12 +177,37 @@ $("#display").on("pageinit", function (toonLibrary) {
         var toonID = localStorage.key(i);
         var toonValue = localStorage.getItem(toonID);
         var toonInfo = JSON.parse(toonValue);
+        
+        //Dynamically generates images based on the toons class
+        if (toonInfo.toonClass[0] === "Warrior") {
+            var imgTag = "<img src='img/warrior.png' />"
+        } else if (toonInfo.toonClass[0] === "Paladin") {
+                var imgTag = "<img src='img/paladin.png' />"
+        } else if (toonInfo.toonClass[0] === "Death Knight") {
+                var imgTag = "<img src='img/deathknight.png' />"
+        } else if (toonInfo.toonClass[0] === "Druid") {
+                var imgTag = "<img src='img/druid.png' />"
+        } else if (toonInfo.toonClass[0] === "Monk") {
+                var imgTag = "<img src='img/monk.png' />"
+        } else if (toonInfo.toonClass[0] === "Warlock") {
+                var imgTag = "<img src='img/warlock.png' />"
+        } else if (toonInfo.toonClass[0] === "Shaman") {
+                var imgTag = "<img src='img/shaman.png' />"
+        } else if (toonInfo.toonClass[0] === "Rogue") {
+                var imgTag = "<img src='img/rogue.png' />"
+        } else if (toonInfo.toonClass[0] === "Priest") {
+                var imgTag = "<img src='img/priest.png' />"
+        } else if (toonInfo.toonClass[0] === "Mage") {
+                var imgTag = "<img src='img/mage.png' />"
+        } else if (toonInfo.toonClass[0] === "Hunter") {
+                var imgTag = "<img src='img/hunter.png />"
+        }
 
         //Saves the key to a data-role in the button
         console.log(toonInfo.characterName[0] + "'s ID is: " + toonID);
         var toonList = $("<li></li>");
         var toonListInfo = $(
-            "<img src='img/paladin.png'>"+
+            imgTag+
             "<h3>" + toonInfo.characterName[0] + "</h3>"+
             "<h4>" + toonInfo.serverName[0] + "</h4>"+
             "<p>" + toonInfo.race[0] + "</p>"+
