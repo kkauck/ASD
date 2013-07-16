@@ -6,7 +6,7 @@
 
 $("#index").on("pageinit", function(){
     
-    /*for (var i = 0, f = localStorage.length; i < f; i++) {
+    for (var i = 0, f = localStorage.length; i < f; i++) {
         
         var toonID = localStorage.key(i);
         var toonValue = localStorage.getItem(toonID);
@@ -107,7 +107,7 @@ $("#index").on("pageinit", function(){
     
     $("#tankDisplay").listview('refresh');
     $("#healerDisplay").listview('refresh');
-    $("#dpsDisplay").listview('refresh');*/
+    $("#dpsDisplay").listview('refresh');
     
 });
 
@@ -179,7 +179,7 @@ $("#display").on("pageinit", function (toonLibrary) {
         var toonInfo = JSON.parse(toonValue);
         
         //Dynamically generates images based on the toons class
-        /*if (toonInfo.toonClass[0] === "Warrior") {
+        if (toonInfo.toonClass[0] === "Warrior") {
             var imgTag = "<img src='img/warrior.png' />"
         } else if (toonInfo.toonClass[0] === "Paladin") {
                 var imgTag = "<img src='img/paladin.png' />"
@@ -201,8 +201,10 @@ $("#display").on("pageinit", function (toonLibrary) {
                 var imgTag = "<img src='img/mage.png' />"
         } else if (toonInfo.toonClass[0] === "Hunter") {
                 var imgTag = "<img src='img/hunter.png />"
-        }*/
+        }
 
+        console.log (toonInfo)
+        
         //Saves the key to a data-role in the button
         console.log(toonInfo.characterName[0] + "'s ID is: " + toonID);
         var toonList = $("<li></li>");
@@ -236,19 +238,17 @@ $("#display").on("pageinit", function (toonLibrary) {
     
     $(".deleteToon").on("click", function (){
 
-        var confirmDelete = confirm("Please confirm that you would like to delete this game.");
+        var confirmDelete = confirm("Please confirm that you would like to delete this toon.");
             if (confirmDelete) {
                 //Pulls the Key for selected item in Local Storage
                 localStorage.removeItem($(this).attr('data-key'));
-                alert("This game was successfully deleted from storage.")
+                alert("This toon was successfully deleted from storage.")
                 window.location.reload();
             } else {
-                alert("Your game was not deleted.");
+                alert("Your toon was not deleted.");
                 window.location.reload("#index");
             }
     });
-        
-    //$(".editToon").on("click", function() {
       
     editToon = function(toonKey){    
         
@@ -273,15 +273,26 @@ $("#display").on("pageinit", function (toonLibrary) {
         $("#extraInfo").val(toonLibrary.extraInfo[0]);
         $("#keyStorage").val(toonKey);
         
-        //saveInfo.removeEventListener("click", storeData);
         $("#submitCharacter").val("Edit My Toon!");
         $("#submitCharacter").button('refresh');
-        //$("#submitCharacter").on("click", storeToon);
 
-        /*var gameEditor = $("#submitGame");
-        //gameEditor.addEventListener("click", fieldCheck);
-        gameEditor.key = this.key;*/
-            
     };
+    
+    $("#clearData").on("click", function(){
+        if(localStorage.length === 0){
+            alert("You have no toons saved to storage");
+            window.location.reload("#index");
+        } else {
+            var confirmClear = confirm("Are you sure you want to delete all stored toons?")
+            if (confirmClear) {
+                localStorage.clear();
+                alert("You have successfully cleared all stored data!");
+                window.location.reload("#display");
+            } else {
+                alert("You saved data has not been deleted!");
+                window.location.reload("#index");
+            }
+        }
+    });
 
 });
