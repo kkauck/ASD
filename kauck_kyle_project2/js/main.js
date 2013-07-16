@@ -41,7 +41,7 @@ $("#index").on("pageinit", function(){
         
             
             //Creates the listview data
-            var toonList = $("<li></li>");
+            var toonList = $("<li data-role='collapsible'></li>");
             var toonListInfo = $(
                 imgTag +
                 "<h3>" + toonInfo.characterName[0] + "</h3>"+
@@ -109,6 +109,19 @@ $("#index").on("pageinit", function(){
     $("#healerDisplay").listview('refresh');
     $("#dpsDisplay").listview('refresh');
     
+    //$(".loadJSON").on("click", function(){
+        
+        $.ajax({
+            url: "xhr/data.js",
+            type: "GET",
+            dataType: "json",
+            success: function(data) {
+                console.log(data);
+            }
+        });
+        
+    //});
+    
 });
 
 $("#addCharacter").on("pageinit", function() {
@@ -125,7 +138,7 @@ $("#addCharacter").on("pageinit", function() {
         submitHandler: function() {
             var data = $("#characterAdd").serializeArray();
             storeToon(data);
-            window.loction.reload();
+            window.location.reload();
         }
     
     });
@@ -165,10 +178,6 @@ $("#addCharacter").on("pageinit", function() {
 });
 
 $("#display").on("pageinit", function (toonLibrary) {
-   
-    if(localStorage.length === 0){
-	alert("You currently have no toons saved in local storage.");
-    }
     
     $("#displayList").append("<ul class='gameListUL'></ul>")
 
@@ -220,9 +229,8 @@ $("#display").on("pageinit", function (toonLibrary) {
             "<p>" + toonInfo.itemLevel[0] + "</p>"+
             "<p>" + toonInfo.professions[0] + "</p>"+
             "<p>" + toonInfo.extraInfo[0] + "</p>"+
-            "<a href='#' class='deleteToon' data-key=" + toonID + ">Delete This Toon</a>"
+            "<button class='deleteToon' data-key=" + toonID + ">Delete This Toon!</button>"
         )
-        var deleteButton = $("<a href='#' class='deleteToon' data-key=" + toonID + ">Delete This Toon</a>");
         var editLink = $("<a href='#' class='editToon' id=" + toonID + ">Edit This Toon</a>");
         editLink.html(toonListInfo);
         toonList.append(editLink).appendTo("#toonDisplay");
@@ -234,7 +242,7 @@ $("#display").on("pageinit", function (toonLibrary) {
         });
     };
     
-    $("#toonDisplay").listview('refresh');
+    $("#toonDisplay").listview('refresh')
     
     $(".deleteToon").on("click", function (){
 
@@ -243,10 +251,10 @@ $("#display").on("pageinit", function (toonLibrary) {
                 //Pulls the Key for selected item in Local Storage
                 localStorage.removeItem($(this).attr('data-key'));
                 alert("This toon was successfully deleted from storage.")
-                $.mobile.changePage('#display');
+                window.location.reload("#index");
             } else {
                 alert("Your toon was not deleted.");
-                $.mobile.changePage('#display');
+                window.location.reload();
             }
     });
       
@@ -281,16 +289,17 @@ $("#display").on("pageinit", function (toonLibrary) {
     $("#clearData").on("click", function(){
         if(localStorage.length === 0){
             alert("You have no toons saved to storage");
-            $.mobile.changePage('#index');
+            window.location.reload("#index");
         } else {
             var confirmClear = confirm("Are you sure you want to delete all stored toons?")
             if (confirmClear) {
                 localStorage.clear();
                 alert("You have successfully cleared all stored data!");
                 $.mobile.changePage('#index');
+                window.location.reload();
             } else {
-                alert("You saved data has not been deleted!");
-                $.mobile.changePage('#display');
+                alert("Your saved data has not been deleted!");
+                window.location.reload();
             }
         }
     });
