@@ -122,11 +122,8 @@ $("#index").on("pageinit", function(){
                     localStorage.setItem(idGen, storeToon)
                     console.log("Saved item " + singleToon + " to Local Storage with a ID of: " + idGen)
                 })
-                $("#tankDisplay").listview('refresh');
-                $("#healerDisplay").listview('refresh');
-                $("#dpsDisplay").listview('refresh');
                 alert ("JSON Data has been successfully loaded into storage!");
-                //window.location.reload();
+                window.location.reload();
                 //console.log(response.toonInfo[1].characterName);
             },
             error: function(error, errorparse){
@@ -160,6 +157,8 @@ $("#index").on("pageinit", function(){
                     localStorage.setItem(idGen, JSON.stringify(storeToon))
                     console.log(storeToon)
                 });
+                alert ("XML Data has been successfully loaded into storage!");
+                window.location.reload();
             },
             error: function(error, errorparse){
                 console.log(error, errorparse)
