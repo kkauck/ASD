@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<toonData>
+    <toonInfo>
+        <characteName>Vyndree</characteName>
+        <serverName>Area 52</serverName>
+        <race>Blood Elf</race>
+        <toonClass>Paladin</toonClass>
+        <role>Tank</role>
+        <specialization>Protection</specialization>
+        <level>90</level>
+        <itemLevel>480</itemLevel>
+        <professions>Alchemy, Enchanting</professions>
+        <extraInfo>One fine looking tank!</extraInfo>
+    </toonInfo>
+    <toonInfo>
+        <characteName>Sheephappens</characteName>
+        <serverName>Stormrage</serverName>
+        <race>Night Elf</race>
+        <toonClass>Mage</toonClass>
+        <role>DPS</role>
+        <specialization>Fire</specialization>
+        <level>90</level>
+        <itemLevel>502</itemLevel>
+        <professions>Alchemy, Tailoring</professions>
+        <extraInfo>I kill things fast!</extraInfo>
+    </toonInfo>
+    <toonInfo>
+        <characteName>Sirhealsalot</characteName>
+        <serverName>Area 52</serverName>
+        <race>Pandaren</race>
+        <toonClass>Priest</toonClass>
+        <role>Healer</role>
+        <specialization>Fire</specialization>
+        <level>90</level>
+        <itemLevel>503</itemLevel>
+        <professions>Tailoring, Inscription</professions>
+        <extraInfo>I heal all the noobs!</extraInfo>
+    </toonInfo>
+</toonData>
