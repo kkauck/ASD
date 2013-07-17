@@ -142,7 +142,7 @@ $("#index").on("pageinit", function(){
             type: "GET",
             dataType: "xml",
             success: function(toonDataXML) {
-                $.each(toonDataXML, function(index, singleToon) {
+                $('toonInfo', toonDataXML).each(function(){
                     var idGen = Math.floor(Math.random()*1000000000);
                     var storeToon = {
                         characterName  :[$("characterName", this).text()],
