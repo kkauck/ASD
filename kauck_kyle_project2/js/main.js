@@ -116,11 +116,12 @@ $("#index").on("pageinit", function(){
             type: "GET",
             dataType: "json",
             success: function(toonData) {
-                for (var a=0, b=toonData.toonInfo.length; a<b; a++)
-                    idGen = Math.floor(Math.random()*1000000000);
-                    var toonLibrary = toonData.toonInfo[a];
-                    localStorage.setItem(idGen, JSON.stringify(toonLibrary));
-                    console.log(toonLibrary)
+                $.each(toonData.toonInfo, function(index, singleToon){
+                    var idGen = Math.floor(Math.random()*1000000000);
+                    var storeToon = JSON.stringify(singleToon);
+                    localStorage.setItem(idGen, storeToon)
+                    console.log("Saved item " + index + " to Local Storage with a ID of: " + idGen)
+                })
                 alert ("JSON Data has been successfully loaded into storage!");
                 //console.log(response.toonInfo[1].characterName);
             },
