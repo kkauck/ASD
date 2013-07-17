@@ -148,7 +148,7 @@ $("#index").on("pageinit", function(){
                         characterName  :[$("characterName", this).text()],
                         serverName     :[$("serverName", this).text()],
                         race           :[$("race", this).text()],
-                        toonClass      :[$("class", this).text()],
+                        toonClass      :[$("toonClass", this).text()],
                         role           :[$("role", this).text()],
                         specialization :[$("specialization", this).text()],
                         level          :[$("level", this).text()],

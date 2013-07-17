@@ -2,7 +2,7 @@
 
 <toonData>
     <toonInfo>
-        <characteName>Vyndree</characteName>
+        <characterName>Vyndree</characterName>
         <serverName>Area 52</serverName>
         <race>Blood Elf</race>
         <toonClass>Paladin</toonClass>
@@ -14,7 +14,7 @@
         <extraInfo>One fine looking tank!</extraInfo>
     </toonInfo>
     <toonInfo>
-        <characteName>Sheephappens</characteName>
+        <characterName>Sheephappens</characterName>
         <serverName>Stormrage</serverName>
         <race>Night Elf</race>
         <toonClass>Mage</toonClass>
@@ -26,7 +26,7 @@
         <extraInfo>I kill things fast!</extraInfo>
     </toonInfo>
     <toonInfo>
-        <characteName>Sirhealsalot</characteName>
+        <characterName>Sirhealsalot</characterName>
         <serverName>Area 52</serverName>
         <race>Pandaren</race>
         <toonClass>Priest</toonClass>
