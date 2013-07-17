@@ -142,7 +142,7 @@ $("#index").on("pageinit", function(){
             type: "GET",
             dataType: "xml",
             success: function(toonDataXML) {
-                console.log(toonDataXML);
+                console.log(toonDataXML.toonInfo[0]);
             },
             error: function(error, errorparse){
                 console.log(error, errorparse)
