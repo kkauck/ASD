@@ -102,12 +102,12 @@ Warcraft Character Tracker HTML
         </header>
         
         <section data-role="content">
+	    
+	    <span id="required">
+                    <strong>* Denotes A Required Field</strong>
+            </span>
             
             <form action="" id="characterAdd">
-                
-                <span id="required">
-                    * Denotes A Required Field
-                </span>
 		
 		<p id="errors">
 		    
@@ -126,7 +126,7 @@ Warcraft Character Tracker HTML
                 <section data-role="fieldcontain">
                     <label for="race">* Race:</label>
                     <select name="race" id="race" data-native-menu="false" autocomplete="off" class="required">
-                        <option data-place-holder="true">--Please Select A Race--</option>
+                        <option data-place-holder="true" value="">--Please Select A Race--</option>
                         <optgroup label="Alliance Races">
                             <option value="Human">Human</option>
                             <option value="Night Elf">Night Elf</option>
@@ -151,7 +151,7 @@ Warcraft Character Tracker HTML
                 <section data-role="fieldcontain">
                     <label for="class">* Class:</label>
                     <select name="class" id="class" data-native-menu="false" autocomplete="off" class="required">
-                        <option data-place-holder="true">--Please Select A Class--</option>
+                        <option data-place-holder="true" value="">--Please Select A Class--</option>
                         <option value="Warrior">Warrior</option>
                         <option value="Rogue">Rogue</option>
                         <option value="Paladin">Paladin</option>
@@ -169,7 +169,7 @@ Warcraft Character Tracker HTML
                 <section data-role="fieldcontain">
                     <label for="role">* Role:</label>
                     <select name="role" id="role" data-native-menu="false" autocomplete="off" class="required">
-                        <option data-place-holder="true">--Please Select A Role--</option>
+                        <option data-place-holder="true" value="">--Please Select A Role--</option>
                         <option value="Tank">Tank</option>
                         <option value="Healer">Healer</option>
                         <option value="DPS">DPS</option>

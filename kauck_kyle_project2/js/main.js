@@ -174,9 +174,11 @@ $("#addCharacter").on("pageinit", function() {
     $("#characterAdd").validate({
         invalidHandler: function(form, validator) {
             $("#errors").empty();
+            $("#characterAdd").prepend("<p id='errors'></p>")
+            $("#errors").append("<span class='errorText'>Please recheck these required fields...</span>")
             for (var errorKey in validator.submitted){
                 var errorLabel = $('label[for^="'+ errorKey +'"]').not('.error');
-                $("#errors").append("<span>" + errorLabel.text() +"</span>");
+                $("#errors").append("<span class='errorText'>" + errorLabel.text() +"</span>");
             };
         },
 		
