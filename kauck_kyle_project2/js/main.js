@@ -120,12 +120,13 @@ $("#index").on("pageinit", function(){
                     var idGen = Math.floor(Math.random()*1000000000);
                     var storeToon = JSON.stringify(singleToon);
                     localStorage.setItem(idGen, storeToon)
-                    toonList.appendTo("#tankDisplay");
-                    toonList.appendTo("#healerDisplay");
-                    toonList.appendTo("#dpsDisplay");
                     console.log("Saved item " + singleToon + " to Local Storage with a ID of: " + idGen)
                 })
+                $("#tankDisplay").listview('refresh');
+                $("#healerDisplay").listview('refresh');
+                $("#dpsDisplay").listview('refresh');
                 alert ("JSON Data has been successfully loaded into storage!");
+                //window.location.reload();
                 //console.log(response.toonInfo[1].characterName);
             },
             error: function(error, errorparse){
