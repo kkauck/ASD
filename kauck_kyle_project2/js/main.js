@@ -142,7 +142,23 @@ $("#index").on("pageinit", function(){
             type: "GET",
             dataType: "xml",
             success: function(toonDataXML) {
-                console.log(toonDataXML.toonInfo[0]);
+                $.each(toonDataXML, function(index, singleToon) {
+                    var idGen = Math.floor(Math.random()*1000000000);
+                    var storeToon = {
+                        characterName  :[$("characterName", this).text()],
+                        serverName     :[$("serverName", this).text()],
+                        race           :[$("race", this).text()],
+                        toonClass      :[$("class", this).text()],
+                        role           :[$("role", this).text()],
+                        specialization :[$("specialization", this).text()],
+                        level          :[$("level", this).text()],
+                        itemLevel      :[$("itemLevel", this).text()],
+                        professions    :[$("professions", this).text()],
+                        extraInfo      :[$("extraInfo", this).text()],
+                    }
+                    localStorage.setItem(idGen, JSON.stringify(storeToon))
+                    console.log(storeToon)
+                });
             },
             error: function(error, errorparse){
                 console.log(error, errorparse)
