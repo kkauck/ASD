@@ -34,7 +34,7 @@ $("#index").on("pageinit", function(){
         } else if (toonInfo.toonClass[0] === "Mage") {
                 var imgTag = "<img src='img/mage.png' />"
         } else if (toonInfo.toonClass[0] === "Hunter") {
-                var imgTag = "<img src='img/hunter.png />"
+                var imgTag = "<img src='img/hunter.png' />"
         }
         
         if (toonInfo.role[0] === "Tank") {
@@ -256,7 +256,7 @@ $("#display").on("pageinit", function (toonLibrary) {
         } else if (toonInfo.toonClass[0] === "Mage") {
                 var imgTag = "<img src='img/mage.png' />"
         } else if (toonInfo.toonClass[0] === "Hunter") {
-                var imgTag = "<img src='img/hunter.png />"
+                var imgTag = "<img src='img/hunter.png' />"
         }
 
         console.log (toonInfo)
