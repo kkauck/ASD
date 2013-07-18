@@ -120,7 +120,7 @@ $("#index").on("pageinit", function(){
                     var idGen = Math.floor(Math.random()*1000000000);
                     var storeToon = JSON.stringify(singleToon);
                     localStorage.setItem(idGen, storeToon)
-                    console.log("Saved item " + singleToon + " to Local Storage with a ID of: " + idGen)
+                    //console.log("Saved item " + singleToon + " to Local Storage with a ID of: " + idGen)
                 })
                 alert ("JSON Data has been successfully loaded into storage!");
                 window.location.reload();
@@ -155,7 +155,7 @@ $("#index").on("pageinit", function(){
                         extraInfo      :[$("extraInfo", this).text()],
                     }
                     localStorage.setItem(idGen, JSON.stringify(storeToon))
-                    console.log(storeToon)
+                    //console.log(storeToon)
                 });
                 alert ("XML Data has been successfully loaded into storage!");
                 window.location.reload();
@@ -194,7 +194,7 @@ $("#addCharacter").on("pageinit", function() {
         
         var toonKey = $("#keyStorage").val();
         
-        console.log("This ID is: " + toonKey)
+        //console.log("This ID is: " + toonKey)
         
         if (!toonKey) {
             var idGen = Math.floor(Math.random()*1000000000);
@@ -215,7 +215,7 @@ $("#addCharacter").on("pageinit", function() {
             extraInfo      :[$("#extraInfo").val()],
         };
         
-        console.log(idGen);
+        //console.log(idGen);
         
         localStorage.setItem(idGen, JSON.stringify(toonLibrary));
         alert("Your Toon Inforamtion Has Been Saved!");
@@ -259,10 +259,10 @@ $("#display").on("pageinit", function (toonLibrary) {
                 var imgTag = "<img src='img/hunter.png' />"
         }
 
-        console.log (toonInfo)
+        //console.log (toonInfo)
         
         //Saves the key to a data-role in the button
-        console.log(toonInfo.characterName[0] + "'s ID is: " + toonID);
+        //console.log(toonInfo.characterName[0] + "'s ID is: " + toonID);
         var toonList = $("<li></li>");
         var toonListInfo = $(
             imgTag+
@@ -285,7 +285,7 @@ $("#display").on("pageinit", function (toonLibrary) {
         editLink.on('click', function() {
             var toonKey = this.id
             editToon(toonKey)
-            console.log("My ID is: " + toonKey)
+            //console.log("My ID is: " + toonKey)
         });
     };
     
