@@ -35,6 +35,30 @@
             "itemLevel"       : ["507"],
             "professions"     : ["Tailoring, Inscription"],
             "extraInfo"       : ["I keep all the noobs alive!"]
+        },
+        {
+            "characterName"   : ["Jacobee"],
+            "serverName"      : ["Stormrage"],
+            "race"            : ["Human"],
+            "toonClass"       : ["Hunter"],
+            "role"            : ["DPS"],
+            "specialization"  : ["Survival"],
+            "level"           : ["90"],
+            "itemLevel"       : ["465"],
+            "professions"     : ["Jewel Crafting"],
+            "extraInfo"       : ["My pet does all my talking."]
+        },
+        {
+            "characterName"   : ["Patrezia"],
+            "serverName"      : ["Stormrage"],
+            "race"            : ["Night Elf"],
+            "toonClass"       : ["Druid"],
+            "role"            : ["Healer"],
+            "specialization"  : ["Restoration"],
+            "level"           : ["90"],
+            "itemLevel"       : ["490"],
+            "professions"     : ["Fishing, Cooking"],
+            "extraInfo"       : ["I can heal if I want to."]
         }
     ]
 }
