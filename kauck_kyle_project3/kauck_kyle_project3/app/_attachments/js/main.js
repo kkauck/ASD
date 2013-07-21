@@ -105,10 +105,13 @@ $("#index").on("pageinit", function(){
         }
     }
     
+    //Refresh the main page listviews to display proper styles
     $("#tankDisplay").listview('refresh');
     $("#healerDisplay").listview('refresh');
     $("#dpsDisplay").listview('refresh');
     
+    
+    //Loads in my JSON Data to Local Storage
     $(".loadJSON").on("click", function(){
         
         $.ajax({
@@ -133,6 +136,7 @@ $("#index").on("pageinit", function(){
         
     });
     
+    //Loads in my XML Data to Local Storage
     $(".loadXML").on("click", function(){
         
         $.ajax({
@@ -165,6 +169,78 @@ $("#index").on("pageinit", function(){
             }
         });
         
+    });
+    
+    //Loads in my Database Data to Display
+    $(".loadDB").on("click", function() {
+	   
+	   $.ajax({
+		   url: "_view/toons",
+		   type: "GET",
+		   dataType: "json",
+		   success: function(toonData) {
+		   
+		       $.mobile.changePage('#dbDisplay');
+		       $("#displayToonDB").empty();
+		   
+		       $.each(toonData.rows, function(index, toonInfo) {
+		       
+		           if (toonInfo.value.toonClass === "Warrior") {
+			            var imgTag = "<img src='img/warrior.png' />"
+			       } else if (toonInfo.value.toonClass === "Paladin") {
+			            var imgTag = "<img src='img/paladin.png' />"
+			       } else if (toonInfo.value.toonClass === "Death Knight") {
+			               var imgTag = "<img src='img/deathknight.png' />"
+			       } else if (toonInfo.value.toonClass === "Druid") {
+			                var imgTag = "<img src='img/druid.png' />"
+		           } else if (toonInfo.value.toonClass === "Monk") {
+		                var imgTag = "<img src='img/monk.png' />"
+	    	       } else if (toonInfo.value.toonClass === "Warlock") {
+			                var imgTag = "<img src='img/warlock.png' />"
+			       } else if (toonInfo.value.toonClass === "Shaman") {
+			                var imgTag = "<img src='img/shaman.png' />"
+			       } else if (toonInfo.value.toonClass === "Rogue") {
+			                var imgTag = "<img src='img/rogue.png' />"
+			       } else if (toonInfo.value.toonClass === "Priest") {
+			                var imgTag = "<img src='img/priest.png' />"
+			       } else if (toonInfo.value.toonClass === "Mage") {
+			                var imgTag = "<img src='img/mage.png' />"
+			       } else if (toonInfo.value.toonClass === "Hunter") {
+			                var imgTag = "<img src='img/hunter.png' />"
+			       }
+		       
+			       var characterName  = toonInfo.value.characterName;
+			       var serverName     = toonInfo.value.serverName;
+			       var race           = toonInfo.value.race;
+			       var toonClass      = toonInfo.value.toonClass;
+			       var role           = toonInfo.value.role;
+			       var specialization = toonInfo.value.specialization;
+			       var level          = toonInfo.value.level;
+			       var itemLevel      = toonInfo.value.itemLevel;
+			       var professions    = toonInfo.value.professions;
+			       var extraInfo      = toonInfo.value.extraInfo;
+			       
+			       $("#displayToonDB").append(
+			           $("<li>").append(
+			               imgTag +
+			               "<h3>" + characterName + "</h3>" +
+			               "<p>" + serverName + "</p>" +
+			               "<p>" + race + "</p>" +
+			               "<p>" + toonClass + "</p>" +
+			               "<p>" + role + "</p>" +
+			               "<p>" + specialization + "</p>" +
+			               "<p>" + level + "</p>" +
+			               "<p>" + itemLevel + "</p>" +
+			               "<p>" + professions + "</p>" +
+			               "<p>" + extraInfo + "</p>" 
+			           )
+                   );
+		       });
+		       $("#displayToonDB").listview('refresh');
+		   }
+		   
+	   });
+	    
     });
     
 });
