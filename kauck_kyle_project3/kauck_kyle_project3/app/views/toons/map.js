@@ -1,6 +1,6 @@
 function (doc) {
-	if(doc._id.substr(0, 6) === "d4f14e") {
-		emit(doc._id, {
+	if(doc.toonKey.substr(0, 9) === "character") {
+		emit(doc.toonKey, {
 			"characterName"  : doc.characterName,
 			"serverName"     : doc.serverName,
 			"race"           : doc.race,
