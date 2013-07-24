@@ -14,27 +14,27 @@ $("#index").on("pageinit", function(){
         
         //Dynamically generates image based on toons class
         if (toonInfo.toonClass[0] === "Warrior") {
-            var imgTag = "<img src='img/warrior.png' />"
+            var imgTag = "<img src='warrior.png' />"
         } else if (toonInfo.toonClass[0] === "Paladin") {
-                var imgTag = "<img src='img/paladin.png' />"
+                var imgTag = "<img src='paladin.png' />"
         } else if (toonInfo.toonClass[0] === "Death Knight") {
-                var imgTag = "<img src='img/deathknight.png' />"
+                var imgTag = "<img src='deathknight.png' />"
         } else if (toonInfo.toonClass[0] === "Druid") {
-                var imgTag = "<img src='img/druid.png' />"
+                var imgTag = "<img src='druid.png' />"
         } else if (toonInfo.toonClass[0] === "Monk") {
-                var imgTag = "<img src='img/monk.png' />"
+                var imgTag = "<img src='monk.png' />"
         } else if (toonInfo.toonClass[0] === "Warlock") {
-                var imgTag = "<img src='img/warlock.png' />"
+                var imgTag = "<img src='warlock.png' />"
         } else if (toonInfo.toonClass[0] === "Shaman") {
-                var imgTag = "<img src='img/shaman.png' />"
+                var imgTag = "<img src='shaman.png' />"
         } else if (toonInfo.toonClass[0] === "Rogue") {
-                var imgTag = "<img src='img/rogue.png' />"
+                var imgTag = "<img src='rogue.png' />"
         } else if (toonInfo.toonClass[0] === "Priest") {
-                var imgTag = "<img src='img/priest.png' />"
+                var imgTag = "<img src='priest.png' />"
         } else if (toonInfo.toonClass[0] === "Mage") {
-                var imgTag = "<img src='img/mage.png' />"
+                var imgTag = "<img src='mage.png' />"
         } else if (toonInfo.toonClass[0] === "Hunter") {
-                var imgTag = "<img src='img/hunter.png' />"
+                var imgTag = "<img src='hunter.png' />"
         }
         
         if (toonInfo.role[0] === "Tank") {
@@ -115,7 +115,7 @@ $("#index").on("pageinit", function(){
     $(".loadJSON").on("click", function(){
         
         $.ajax({
-            url: "xhr/data.json",
+            url: "data.json",
             type: "GET",
             dataType: "json",
             success: function(toonData) {
@@ -140,7 +140,7 @@ $("#index").on("pageinit", function(){
     $(".loadXML").on("click", function(){
         
         $.ajax({
-            url: "xhr/data.xml",
+            url: "data.xml",
             type: "GET",
             dataType: "xml",
             success: function(toonDataXML) {
@@ -186,27 +186,27 @@ $("#index").on("pageinit", function(){
 		       $.each(toonData.rows, function(index, toonInfo) {
 		       
 		           if (toonInfo.value.toonClass === "Warrior") {
-			            var imgTag = "<img src='img/warrior.png' />"
+			            var imgTag = "<img src='warrior.png' />"
 			       } else if (toonInfo.value.toonClass === "Paladin") {
-			            var imgTag = "<img src='img/paladin.png' />"
+			            var imgTag = "<img src='paladin.png' />"
 			       } else if (toonInfo.value.toonClass === "Death Knight") {
-			               var imgTag = "<img src='img/deathknight.png' />"
+			               var imgTag = "<img src='deathknight.png' />"
 			       } else if (toonInfo.value.toonClass === "Druid") {
-			                var imgTag = "<img src='img/druid.png' />"
+			                var imgTag = "<img src='druid.png' />"
 		           } else if (toonInfo.value.toonClass === "Monk") {
-		                var imgTag = "<img src='img/monk.png' />"
+		                var imgTag = "<img src='monk.png' />"
 	    	       } else if (toonInfo.value.toonClass === "Warlock") {
-			                var imgTag = "<img src='img/warlock.png' />"
+			                var imgTag = "<img src='warlock.png' />"
 			       } else if (toonInfo.value.toonClass === "Shaman") {
-			                var imgTag = "<img src='img/shaman.png' />"
+			                var imgTag = "<img src='shaman.png' />"
 			       } else if (toonInfo.value.toonClass === "Rogue") {
-			                var imgTag = "<img src='img/rogue.png' />"
+			                var imgTag = "<img src='rogue.png' />"
 			       } else if (toonInfo.value.toonClass === "Priest") {
-			                var imgTag = "<img src='img/priest.png' />"
+			                var imgTag = "<img src='priest.png' />"
 			       } else if (toonInfo.value.toonClass === "Mage") {
-			                var imgTag = "<img src='img/mage.png' />"
+			                var imgTag = "<img src='mage.png' />"
 			       } else if (toonInfo.value.toonClass === "Hunter") {
-			                var imgTag = "<img src='img/hunter.png' />"
+			                var imgTag = "<img src='hunter.png' />"
 			       }
 		       
 			       var characterName  = toonInfo.value.characterName;
@@ -312,27 +312,27 @@ $("#display").on("pageinit", function (toonLibrary) {
         
         //Dynamically generates images based on the toons class
         if (toonInfo.toonClass[0] === "Warrior") {
-            var imgTag = "<img src='img/warrior.png' />"
+            var imgTag = "<img src='warrior.png' />"
         } else if (toonInfo.toonClass[0] === "Paladin") {
-                var imgTag = "<img src='img/paladin.png' />"
+                var imgTag = "<img src='paladin.png' />"
         } else if (toonInfo.toonClass[0] === "Death Knight") {
-                var imgTag = "<img src='img/deathknight.png' />"
+                var imgTag = "<img src='deathknight.png' />"
         } else if (toonInfo.toonClass[0] === "Druid") {
-                var imgTag = "<img src='img/druid.png' />"
+                var imgTag = "<img src='druid.png' />"
         } else if (toonInfo.toonClass[0] === "Monk") {
-                var imgTag = "<img src='img/monk.png' />"
+                var imgTag = "<img src='monk.png' />"
         } else if (toonInfo.toonClass[0] === "Warlock") {
-                var imgTag = "<img src='img/warlock.png' />"
+                var imgTag = "<img src='warlock.png' />"
         } else if (toonInfo.toonClass[0] === "Shaman") {
-                var imgTag = "<img src='img/shaman.png' />"
+                var imgTag = "<img src='shaman.png' />"
         } else if (toonInfo.toonClass[0] === "Rogue") {
-                var imgTag = "<img src='img/rogue.png' />"
+                var imgTag = "<img src='rogue.png' />"
         } else if (toonInfo.toonClass[0] === "Priest") {
-                var imgTag = "<img src='img/priest.png' />"
+                var imgTag = "<img src='priest.png' />"
         } else if (toonInfo.toonClass[0] === "Mage") {
-                var imgTag = "<img src='img/mage.png' />"
+                var imgTag = "<img src='mage.png' />"
         } else if (toonInfo.toonClass[0] === "Hunter") {
-                var imgTag = "<img src='img/hunter.png' />"
+                var imgTag = "<img src='hunter.png' />"
         }
 
         //console.log (toonInfo)
