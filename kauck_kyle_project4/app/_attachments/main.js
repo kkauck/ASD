@@ -185,7 +185,7 @@ $("#index").on("pageinit", function(){
 			    	$("#displayToonDB").append(
 			    		$("<li>").append(
 			    			$("<a>")
-			    			.attr("href", "program.html")
+			    			.attr("href", "display.html?display=" + toonItem.characterName)
 			    			.text(toonItem.characterName + " (" + toonItem.toonClass + ")")
 			    		)
 			    	);
