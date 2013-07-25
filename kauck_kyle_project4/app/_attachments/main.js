@@ -173,8 +173,28 @@ $("#index").on("pageinit", function(){
     
     //Loads in my Database Data to Display
     $(".loadDB").on("click", function() {
+    
+    	$.couch.db("toontracker").view("toontrackerdb/toons", {
+	    	success: function(toonData) {
+	    	
+	    		$.mobile.changePage("#dbDisplay");
+		    	$("#displayToonDB").empty();
+		    	
+		    	$.each(toonData.rows, function(index, toonInfo) {
+			    	var toonItem = (toonInfo.value || toonInfo.doc);
+			    	$("#displayToonDB").append(
+			    		$("<li>").append(
+			    			$("<a>")
+			    			.attr("href", "program.html")
+			    			.text(toonItem.characterName + " (" + toonItem.toonClass + ")")
+			    		)
+			    	);
+		    	})
+		    	$("#displayToonDB").listview("refresh");
+	    	}
+    	});
 	   
-	   $.ajax({
+	   /*$.ajax({
 		   url: "_view/toons",
 		   type: "GET",
 		   dataType: "json",
@@ -239,7 +259,7 @@ $("#index").on("pageinit", function(){
 		       $("#displayToonDB").listview('refresh');
 		   }
 		   
-	   });
+	   });*/
 	    
     });
     
