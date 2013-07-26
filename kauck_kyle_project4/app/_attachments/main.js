@@ -280,13 +280,45 @@ $("#addCharacter").on("pageinit", function() {
 		
         submitHandler: function() {
             var data = $("#characterAdd").serializeArray();
-            storeToon(data);
+            toonStorage(data);
             window.location.reload();
         }
     
     });
     
-    storeToon = function (data) {
+    toonStorage = function (data) {
+	    
+	    var toonData = {
+	   
+	    	"characterName"  : $("#characterName").val(),
+	    	"serverName"     : $("#serverName").val(),
+            "race"           : $("#race").val(),
+            "toonClass"      : $("#class").val(),
+            "role"           : $("#role").val(),
+            "specialization" : $("#specialization").val(),
+            "level"          : $("#level").val(),
+            "itemLevel"      : $("#itemLevel").val(),
+            "professions"    : $("#professions").val(),
+            "extraInfo"      : $("#extraInfo").val(),
+            "toonKey"        : $("#toonKey").val(),
+            
+	    };
+	    
+	    $.couch.db("toontracker").saveDoc(toonData, {
+		   
+		   success: function(data) {;
+		   	   console.log (data)
+		   },
+		   error: function(status) {
+			   console.log (status)
+		   }
+	    });
+	    
+	    alert("Your data has been saved to the Database!");
+	    
+    };
+    
+    /*storeToon = function (data) {
         
         var toonKey = $("#keyStorage").val();
         
@@ -316,7 +348,7 @@ $("#addCharacter").on("pageinit", function() {
         localStorage.setItem(idGen, JSON.stringify(toonLibrary));
         alert("Your Toon Inforamtion Has Been Saved!");
         
-    };
+    };*/
 
 });
 
