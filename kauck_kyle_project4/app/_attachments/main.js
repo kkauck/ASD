@@ -185,7 +185,7 @@ $("#index").on("pageinit", function(){
 			    	$("#displayToonDB").append(
 			    		$("<li>").append(
 			    			$("<a>")
-			    			.attr("href", "display.html?display=" + toonItem.characterName)
+			    			.attr("href", "toon.html?characterName=" + toonItem.characterName)
 			    			.text(toonItem.characterName + " (" + toonItem.toonClass + ")")
 			    		)
 			    	);
@@ -263,6 +263,23 @@ $("#index").on("pageinit", function(){
 	    
     });
     
+});
+
+$(document).on("pageinit", "#toon", function() {
+	
+	var urlInfo = $(this).data("url");
+	var urlShard = urlInfo.split("?");
+	var urlShards = urlShard[1].split("&");
+	
+	var urlVal = {};
+	for (var i in urlShards){
+		var keyInfo = urlShards[i].split("=");
+		var keyDecode = decodeURIComponent(keyInfo[0]);
+		var valueDecode = decodeURIComponent(keyInfo[1]);
+		urlVal[keyDecode] = valueDecode;
+	}
+	console.log(urlVal)
+	
 });
 
 $("#addCharacter").on("pageinit", function() {
