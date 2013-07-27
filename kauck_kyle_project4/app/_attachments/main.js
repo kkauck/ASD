@@ -6,206 +6,35 @@
 
 $("#index").on("pageinit", function(){
     
-    for (var i = 0, f = localStorage.length; i < f; i++) {
-        
-        var toonID = localStorage.key(i);
-        var toonValue = localStorage.getItem(toonID);
-        var toonInfo = JSON.parse(toonValue);
-        
-        //Dynamically generates image based on toons class
-        if (toonInfo.toonClass[0] === "Warrior") {
-            var imgTag = "<img src='warrior.png' />"
-        } else if (toonInfo.toonClass[0] === "Paladin") {
-                var imgTag = "<img src='paladin.png' />"
-        } else if (toonInfo.toonClass[0] === "Death Knight") {
-                var imgTag = "<img src='deathknight.png' />"
-        } else if (toonInfo.toonClass[0] === "Druid") {
-                var imgTag = "<img src='druid.png' />"
-        } else if (toonInfo.toonClass[0] === "Monk") {
-                var imgTag = "<img src='monk.png' />"
-        } else if (toonInfo.toonClass[0] === "Warlock") {
-                var imgTag = "<img src='warlock.png' />"
-        } else if (toonInfo.toonClass[0] === "Shaman") {
-                var imgTag = "<img src='shaman.png' />"
-        } else if (toonInfo.toonClass[0] === "Rogue") {
-                var imgTag = "<img src='rogue.png' />"
-        } else if (toonInfo.toonClass[0] === "Priest") {
-                var imgTag = "<img src='priest.png' />"
-        } else if (toonInfo.toonClass[0] === "Mage") {
-                var imgTag = "<img src='mage.png' />"
-        } else if (toonInfo.toonClass[0] === "Hunter") {
-                var imgTag = "<img src='hunter.png' />"
-        }
-        
-        if (toonInfo.role[0] === "Tank") {
-        
-            
-            //Creates the listview data
-            var toonList = $("<li data-role='collapsible'></li>");
-            var toonListInfo = $(
-                imgTag +
-                "<h3>" + toonInfo.characterName[0] + "</h3>"+
-                "<h4>" + toonInfo.serverName[0] + "</h4>"+
-                "<p>" + toonInfo.race[0] + "</p>"+
-                "<p>" + toonInfo.toonClass[0] + "</p>"+
-                "<p>" + toonInfo.role[0] + "</p>"+
-                "<p>" + toonInfo.specialization[0] + "</p>"+
-                "<p>" + toonInfo.level[0] + "</p>"+
-                "<p>" + toonInfo.itemLevel[0] + "</p>"+
-                "<p>" + toonInfo.professions[0] + "</p>"+
-                "<p>" + toonInfo.extraInfo[0] + "</p>"
-            )
-            
-            
-            toonList.html(toonListInfo);
-            toonList.appendTo("#tankDisplay");
-        
-        } else if (toonInfo.role[0] === "Healer") {
+    //Keeping code in case need to add in more information!
+    
+});
 
-            var toonList = $("<li></li>");
-            var toonListInfo = $(
-                imgTag+
-                "<h3>" + toonInfo.characterName[0] + "</h3>"+
-                "<h4>" + toonInfo.serverName[0] + "</h4>"+
-                "<p>" + toonInfo.race[0] + "</p>"+
-                "<p>" + toonInfo.toonClass[0] + "</p>"+
-                "<p>" + toonInfo.role[0] + "</p>"+
-                "<p>" + toonInfo.specialization[0] + "</p>"+
-                "<p>" + toonInfo.level[0] + "</p>"+
-                "<p>" + toonInfo.itemLevel[0] + "</p>"+
-                "<p>" + toonInfo.professions[0] + "</p>"+
-                "<p>" + toonInfo.extraInfo[0] + "</p>"
-            )
-            
-            
-            toonList.html(toonListInfo);
-            toonList.appendTo("#healerDisplay"); 
-            
-        } else if (toonInfo.role[0] === "DPS") {
-
-            var toonList = $("<li></li>");
-            var toonListInfo = $(
-                imgTag +
-                "<h3>" + toonInfo.characterName[0] + "</h3>"+
-                "<h4>" + toonInfo.serverName[0] + "</h4>"+
-                "<p>" + toonInfo.race[0] + "</p>"+
-                "<p>" + toonInfo.toonClass[0] + "</p>"+
-                "<p>" + toonInfo.role[0] + "</p>"+
-                "<p>" + toonInfo.specialization[0] + "</p>"+
-                "<p>" + toonInfo.level[0] + "</p>"+
-                "<p>" + toonInfo.itemLevel[0] + "</p>"+
-                "<p>" + toonInfo.professions[0] + "</p>"+
-                "<p>" + toonInfo.extraInfo[0] + "</p>"
-            )
-            
-            
-            toonList.html(toonListInfo);
-            toonList.appendTo("#dpsDisplay"); 
-            
-        }
-    }
-    
-    //Refresh the main page listviews to display proper styles
-    $("#tankDisplay").listview('refresh');
-    $("#healerDisplay").listview('refresh');
-    $("#dpsDisplay").listview('refresh');
-    
-    
-    //Loads in my JSON Data to Local Storage
-    $(".loadJSON").on("click", function(){
-        
-        $.ajax({
-            url: "data.json",
-            type: "GET",
-            dataType: "json",
-            success: function(toonData) {
-                $.each(toonData.toonInfo, function(index, singleToon){
-                    var idGen = Math.floor(Math.random()*1000000000);
-                    var storeToon = JSON.stringify(singleToon);
-                    localStorage.setItem(idGen, storeToon)
-                    //console.log("Saved item " + singleToon + " to Local Storage with a ID of: " + idGen)
-                })
-                alert ("JSON Data has been successfully loaded into storage!");
-                window.location.reload();
-                //console.log(response.toonInfo[1].characterName);
-            },
-            error: function(error, errorparse){
-                console.log(error, errorparse)
-            }
-        });
-        
-    });
-    
-    //Loads in my XML Data to Local Storage
-    $(".loadXML").on("click", function(){
-        
-        $.ajax({
-            url: "data.xml",
-            type: "GET",
-            dataType: "xml",
-            success: function(toonDataXML) {
-                $('toonInfo', toonDataXML).each(function(){
-                    var idGen = Math.floor(Math.random()*1000000000);
-                    var storeToon = {
-                        characterName  :[$("characterName", this).text()],
-                        serverName     :[$("serverName", this).text()],
-                        race           :[$("race", this).text()],
-                        toonClass      :[$("toonClass", this).text()],
-                        role           :[$("role", this).text()],
-                        specialization :[$("specialization", this).text()],
-                        level          :[$("level", this).text()],
-                        itemLevel      :[$("itemLevel", this).text()],
-                        professions    :[$("professions", this).text()],
-                        extraInfo      :[$("extraInfo", this).text()],
-                    }
-                    localStorage.setItem(idGen, JSON.stringify(storeToon))
-                    //console.log(storeToon)
-                });
-                alert ("XML Data has been successfully loaded into storage!");
-                window.location.reload();
-            },
-            error: function(error, errorparse){
-                console.log(error, errorparse)
-            }
-        });
-        
-    });
-    
-    //Loads in my Database Data to Display
-    $(".loadDB").on("click", function() {
-    
-    	$.couch.db("toontracker").view("toontrackerdb/toons", {
-	    	success: function(toonData) {
-	    	
-	    		$.mobile.changePage("#dbDisplay");
-		    	$("#displayToonDB").empty();
-		    	
-		    	$.each(toonData.rows, function(index, toonInfo) {
-			    	var toonItem = (toonInfo.value || toonInfo.doc);
-			    	$("#displayToonDB").append(
-			    		$("<li>").append(
-			    			$("<a>")
-			    			.attr("href", "toon.html?characterName=" + toonItem.characterName)
-			    			.text(toonItem.characterName + " (" + toonItem.toonClass + ")")
-			    		)
-			    	);
-		    	})
-		    	$("#displayToonDB").listview("refresh");
-	    	}
-    	});
-	   
-	   /*$.ajax({
-		   url: "_view/toons",
-		   type: "GET",
-		   dataType: "json",
-		   success: function(toonData) {
-		   
-		       $.mobile.changePage('#dbDisplay');
-		       $("#displayToonDB").empty();
-		   
-		       $.each(toonData.rows, function(index, toonInfo) {
-		       
-		           if (toonInfo.value.toonClass === "Warrior") {
+$(document).on("pageinit", "#toon", function() {
+	
+	var urlData = $(this).data("url");
+	var urlParts = urlData.split("?");
+	var urlPairs = urlParts[1].split("&");
+	
+	var urlValues = {};
+	for (var i in urlPairs){
+		var keyValue = urlPairs[i].split("=");
+		var key = decodeURIComponent(keyValue[0]);
+		var value = decodeURIComponent(keyValue[1]);
+		urlValues[key] = value;
+	}
+	
+	var keyInfo = urlValues["toon"];
+	
+	$.couch.db("toontracker").view("toontrackerdb/toons", {
+	
+		key: keyInfo,
+		
+		success: function(toonData){
+			$.each(toonData.rows, function(index, toonInfo) {
+				var toonItem = (toonInfo.value || toonInfo.doc)
+				
+				if (toonInfo.value.toonClass === "Warrior") {
 			            var imgTag = "<img src='warrior.png' />"
 			       } else if (toonInfo.value.toonClass === "Paladin") {
 			            var imgTag = "<img src='paladin.png' />"
@@ -228,65 +57,24 @@ $("#index").on("pageinit", function(){
 			       } else if (toonInfo.value.toonClass === "Hunter") {
 			                var imgTag = "<img src='hunter.png' />"
 			       }
-		       
-			       var characterName  = toonInfo.value.characterName;
-			       var serverName     = toonInfo.value.serverName;
-			       var race           = toonInfo.value.race;
-			       var toonClass      = toonInfo.value.toonClass;
-			       var role           = toonInfo.value.role;
-			       var specialization = toonInfo.value.specialization;
-			       var level          = toonInfo.value.level;
-			       var itemLevel      = toonInfo.value.itemLevel;
-			       var professions    = toonInfo.value.professions;
-			       var extraInfo      = toonInfo.value.extraInfo;
-			       
-			       $("#displayToonDB").append(
-			           $("<li>").append(
-			               imgTag +
-			               "<h3>" + characterName + "</h3>" +
-			               "<p>" + serverName + "</p>" +
-			               "<p>" + race + "</p>" +
-			               "<p>" + toonClass + "</p>" +
-			               "<p>" + role + "</p>" +
-			               "<p>" + specialization + "</p>" +
-			               "<p>" + level + "</p>" +
-			               "<p>" + itemLevel + "</p>" +
-			               "<p>" + professions + "</p>" +
-			               "<p>" + extraInfo + "</p>" 
-			           )
-                   );
-		       });
-		       $("#displayToonDB").listview('refresh');
-		   }
-		   
-	   });*/
-	    
-    });
-    
-});
-
-$(document).on("pageinit", "#toon", function() {
-	
-	var urlInfo = $(this).data("url");
-	var urlShard = urlInfo.split("?");
-	var urlShards = urlShard[1].split("&");
-	
-	var urlVal = {};
-	for (var i in urlShards){
-		var keyInfo = urlShards[i].split("=");
-		var keyDecode = decodeURIComponent(keyInfo[0]);
-		var valueDecode = decodeURIComponent(keyInfo[1]);
-		urlVal[keyDecode] = valueDecode;
-	}
-	
-	console.log(urlVal)
-	
-	
-	
-	$.couch.db("toontracker").view("toontrackerdb/toons", {
-		
-		success: function(toonData) {
-			console.log(toonData)
+				
+				$("#toonInfo").append(
+					$("<li>").append(
+						imgTag +
+						"<h3>" + toonItem.characterName + "</h3>" +
+						"<p>" + toonItem.serverName + "</p>" +
+						"<p>" + toonItem.race + "</p>" +
+						"<p>" + toonItem.toonClass + "</p>" +
+						"<p>" + toonItem.role + "</p>" +
+						"<p>" + toonItem.specialization + "</p>" +
+						"<p>" + toonItem.level + "</p>" +
+						"<p>" + toonItem.itemLevel + "</p>" +
+						"<p>" + toonItem.professions + "</p>" +
+						"<p>" + toonItem.extraInfo + "</p>" 
+					)
+				);
+			});
+			$("#toonInfo").listview('refresh');
 		}
 		
 	});
@@ -334,7 +122,7 @@ $("#addCharacter").on("pageinit", function() {
 	    
 	    $.couch.db("toontracker").saveDoc(toonData, {
 		   
-		   success: function(data) {;
+		   success: function(data) {
 		   	   console.log (data)
 		   },
 		   error: function(status) {
@@ -393,7 +181,7 @@ $("#display").on("pageinit", function (toonLibrary) {
 				$("#toonDisplay").append(
 					$("<li>").append(
 				    	$("<a>")
-				    		.attr("href", "toon.html?characterName=" + toonItem.characterName)
+				    		.attr("href", "toon.html?toon=" + toonItem.characterName)
 				    		.text(toonItem.characterName + " (" + toonItem.toonClass + ")")
 				    	)
 				    );
