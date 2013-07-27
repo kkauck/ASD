@@ -1,6 +1,6 @@
 function (doc) {
 	if(doc.toonKey.substr(0, 9) === "character") {
-		emit(doc.toonKey, {
+		emit(doc.toonKey.substr(9), {
 			"characterName"  : doc.characterName,
 			"serverName"     : doc.serverName,
 			"race"           : doc.race,

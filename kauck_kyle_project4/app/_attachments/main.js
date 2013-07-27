@@ -278,7 +278,18 @@ $(document).on("pageinit", "#toon", function() {
 		var valueDecode = decodeURIComponent(keyInfo[1]);
 		urlVal[keyDecode] = valueDecode;
 	}
+	
 	console.log(urlVal)
+	
+	
+	
+	$.couch.db("toontracker").view("toontrackerdb/toons", {
+		
+		success: function(toonData) {
+			console.log(toonData)
+		}
+		
+	});
 	
 });
 
@@ -317,7 +328,7 @@ $("#addCharacter").on("pageinit", function() {
             "itemLevel"      : $("#itemLevel").val(),
             "professions"    : $("#professions").val(),
             "extraInfo"      : $("#extraInfo").val(),
-            "toonKey"        : $("#toonKey").val(),
+            "toonKey"        : $("#toonKey").val() + $("#characterName").val(),
             
 	    };
 	    
@@ -370,8 +381,28 @@ $("#addCharacter").on("pageinit", function() {
 });
 
 $("#display").on("pageinit", function (toonLibrary) {
+
+	$.couch.db("toontracker").view("toontrackerdb/toons", {
+	    success: function(toonData) {
+	    	
+	    //$.mobile.changePage("#dbDisplay");
+			$("#toonDisplay").empty();
+			    	
+			$.each(toonData.rows, function(index, toonInfo) {
+				var toonItem = (toonInfo.value || toonInfo.doc);
+				$("#toonDisplay").append(
+					$("<li>").append(
+				    	$("<a>")
+				    		.attr("href", "toon.html?characterName=" + toonItem.characterName)
+				    		.text(toonItem.characterName + " (" + toonItem.toonClass + ")")
+				    	)
+				    );
+			});
+		    $("#toonDisplay").listview("refresh");
+		 }
+	});
     
-    $("#displayList").append("<ul class='gameListUL'></ul>")
+    /*$("#displayList").append("<ul class='gameListUL'></ul>")
 
     for (var i = 0, f = localStorage.length; i < f; i++) {
         
@@ -494,6 +525,6 @@ $("#display").on("pageinit", function (toonLibrary) {
                 window.location.reload();
             }
         }
-    });
+    });*/
 
 });
