@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+
+<!--
+Kyle Kauck
+ASD 1307
+Warcraft Character Tracker HTML (Toon Edit)
+-->
+
+
+<html>
+
+<head>
+	
+	<!-- My meta declarations for the index.html page -->
+    <meta charset="utf-8" /> 
+    <title>Edit This Toon</title>	
+	
+</head>
+
+<body>
+
+    <!-- Add Character Page -->
+    <div data-role="page" data-add-back-btn="true" data-theme="a" id="editToon">
+        
+        <header data-role="header" data-position="fixed">
+            <h1><img src="indexHeader.png" alt="Toon Tracker!" id="header" /></h1>
+        </header>
+        
+        <section data-role="content">
+	    
+	    <span id="required">
+                    <strong>* Denotes A Required Field</strong>
+            </span>
+            
+            <form action="" id="toonEdit">
+		
+		<p id="errors">
+		    
+		</p>
+                <section data-role="fieldcontain">
+                	<label for="editID">Toons Saved ID: </label>
+				    <input type="text" disabled="true" name="editID" id="editID" />
+				</section>
+				
+				<section data-role="fieldcontain">
+					<label for="editRev">Toons Revision #: </label>
+					<input type="text" disabled="true" name="editRav" id="editRev" />
+				</section>
+                
+                
+                <section data-role="fieldcontain">
+                    <label for="editCharacterName">* Character Name:</label>
+                    <input type="text" name="editCharacterName" id="editCharacterName" autocomplete="off" class="required" placeholder="Please enter your characters name..." />
+                </section>
+                
+                <section data-role="fieldcontain">
+                    <label for="editServerName">* Server Name:</label>
+                    <input type="text" name="editServerName" id="editServerName" autocomplete="off" class="required" placeholder="Please enter the server name..." />
+                </section>
+                
+                <section data-role="fieldcontain">
+                    <label for="editRace">* Race:</label>
+                    <select name="editRace" id="editRace" data-native-menu="false" autocomplete="off" class="required">
+                        <option data-place-holder="true" value="">--Please Select A Race--</option>
+                        <optgroup label="Alliance Races">
+                            <option value="Human">Human</option>
+                            <option value="Night Elf">Night Elf</option>
+                            <option value="Dwarf">Dwarf</option>
+                            <option value="Gnome">Gnome</option>
+                            <option value="Worgen">Worgen</option>
+                            <option value="Draenei">Draenei</option>
+                            <option value="Pandaren">Pandaren</option>
+                        </optgroup>
+                        <optgroup label="Horde Races">
+                            <option value="Orc">Orc</option>
+                            <option value="Blood Elf">Blood Elf</option>
+                            <option value="Troll">Troll</option>
+                            <option value="Undead">Undead</option>
+                            <option value="Tauren">Tauren</option>
+                            <option value="Goblin">Goblin</option>
+                            <option value="Pandaren">Pandaren</option>
+                        </optgroup>
+                    </select>
+                </section>
+                
+                <section data-role="fieldcontain">
+                    <label for="editClass">* Class:</label>
+                    <select name="editClass" id="editClass" data-native-menu="false" autocomplete="off" class="required">
+                        <option data-place-holder="true" value="">--Please Select A Class--</option>
+                        <option value="Warrior">Warrior</option>
+                        <option value="Rogue">Rogue</option>
+                        <option value="Paladin">Paladin</option>
+                        <option value="Monk">Monk</option>
+                        <option value="Death Knight">Death Knight</option>
+                        <option value="Mage">Mage</option>
+                        <option value="Warlock">Warlock</option>
+                        <option value="Priest">Priest</option>
+                        <option value="Druid">Druid</option>
+                        <option value="Shaman">Shaman</option>
+                        <option value="Hunter">Hunter</option>
+                    </select>
+                </section>
+                
+                <section data-role="fieldcontain">
+                    <label for="editRole">* Role:</label>
+                    <select name="editRole" id="editRole" data-native-menu="false" autocomplete="off" class="required">
+                        <option data-place-holder="true" value="">--Please Select A Role--</option>
+                        <option value="Tank">Tank</option>
+                        <option value="Healer">Healer</option>
+                        <option value="DPS">DPS</option>
+                    </select>
+                </section>
+                
+                <section data-role="fieldcontain">
+                    <label for="editSpecialization">* Specialization</label>
+                    <input type="text" name="editSpecialization" id="editSpecialization" autocomplete="off" class="required" placeholder="Please enter a class specialization..." />
+                </section>
+                
+                <section data-role="fieldcontain">
+                    <label for="editLevel">* Level:</label>
+                    <input type="range" name="editLevel" id="editLevel" min="1" max="90" value="6" />
+                </section>
+                
+                <section data-role="fieldcontain">
+                    <label for="editItemLevel">Item Level:</label>
+                    <input type="text" name="editItemLevel" id="editItemLevel" autocomplete="off" placeholder="Please enter your characters item level..." />
+                </section>
+                
+                <section data-role="fieldcontain">
+                    <label for="editProfessions">Professions:</label>
+                    <textarea name="editProfessions" id="editProfessions" autocomplete="off" placeholder="Please enter any professions and their level here..."></textarea>
+                </section>
+                
+                <section data-role="fieldcontain">
+                    <label for="editExtraInfo">Additional Information:</label>
+                    <textarea name="editExtraInfo" id="editExtraInfo" autocomplete="off" placeholder="Please enter any additional information you want here..."></textarea>
+                </section>
+                
+                <section>
+					<input type="hidden" id="toonKey" value="character" />
+				</section>
+                
+                <section class="ui-grid-solo">
+                    <section class="ui-block-a">
+                        <input type="submit" value="Edit My Toon!" id="editCharacter" data-theme="a" />
+                    </section>
+                </section>
+                
+            </form>
+
+        </section>
+    
+        <footer data-role="footer" data-position="fixed">
+            
+            <section data-role="navbar">
+                <ul>
+                    <li><a href="index.html" data-icon="home" data-iconpos="top">Home</a></li>
+                    <li><a id="editMyToon" data-icon="gear" data-iconpos="top" class="ui-btn-active ui-state-persist">Edit My Toon</a></li>
+                </ul>
+            </section>
+            
+        </footer>
+        
+    </div>
+
+</body>
+
+</html>
