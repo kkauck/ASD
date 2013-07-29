@@ -247,7 +247,7 @@ $(document).on("pageinit", "#delete", function (){
 			                $.couch.db("toontracker").removeDoc(doc, {
 				                success: function(data) {
 				                	alert("This toon was successfully deleted from the database!")
-					                $.mobile.changePage("index.html");
+					                window.location.href = "index.html";
 				                }
 			                });
 			                } else {
@@ -349,17 +349,27 @@ $("#addCharacter").on("pageinit", function() {
 
 });
 
-$("#display").on("pageinit", function (toonLibrary) {
+$("#display").on("pageinit", function () {
 
+	$("#toonDisplay").empty();
+	$("#toonDisplay").listview('refresh')
 
+	var docs = [];
+	console.log(docs)
+	
 	$.couch.db("toontracker").view("toontrackerdb/toons", {
 	    success: function(toonData) {
-	    	
-	    //$.mobile.changePage("#dbDisplay");
-			$("#toonDisplay").empty();
-			    	
+	    				    	
 			$.each(toonData.rows, function(index, toonInfo) {
 				var toonItem = (toonInfo.value || toonInfo.doc);
+				
+				var docInfo = {
+					_id: toonItem.id,
+					_rev: toonItem.rev
+				}
+				
+				docs.push(docInfo);
+				
 				$("#toonDisplay").append(
 					$("<li>").append(
 				    	$("<a>")
@@ -370,6 +380,28 @@ $("#display").on("pageinit", function (toonLibrary) {
 			});
 		    $("#toonDisplay").listview("refresh");
 		 }
+	});
+	
+	$("#clearData").on("click", function() {
+	
+		if(docs.length === 0) {
+			alert("Sorry you have no data saved to the database");
+		} else {
+	
+			var confirmMassDelete = confirm("Please confirm that you would like to delete all data from database!");
+			if(confirmMassDelete) {
+			
+				$.couch.db("toontracker").bulkRemove({"docs": docs}, {
+					success: function(data) {
+						alert("All data was successfully deleted from the database!");
+						window.location.href = "index.html";
+					}
+				})
+			} else {
+				alert("Your data was not deleted.");
+				window.location.reload();
+			}
+		}
 	});
     
     /*$("#displayList").append("<ul class='gameListUL'></ul>")
