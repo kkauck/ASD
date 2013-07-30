@@ -6,7 +6,112 @@
 
 $("#index").on("pageinit", function(){
     
-    //Keeping code in case need to add in more information!
+    $.couch.db("toontracker").view("toontrackerdb/toons", {
+	    success: function(toonData) {
+	    				    	
+			$.each(toonData.rows, function(index, toonInfo) {
+				var toonItem = (toonInfo.value || toonInfo.doc);
+				
+				if (toonItem.toonClass === "Warrior") {
+			            var imgTag = "<img src='warrior.png' />"
+			       } else if (toonItem.toonClass === "Paladin") {
+			            var imgTag = "<img src='paladin.png' />"
+			       } else if (toonItem.toonClass === "Death Knight") {
+			               var imgTag = "<img src='deathknight.png' />"
+			       } else if (toonItem.toonClass === "Druid") {
+			                var imgTag = "<img src='druid.png' />"
+		           } else if (toonItem.toonClass === "Monk") {
+		                var imgTag = "<img src='monk.png' />"
+	    	       } else if (toonItem.toonClass === "Warlock") {
+			                var imgTag = "<img src='warlock.png' />"
+			       } else if (toonItem.toonClass === "Shaman") {
+			                var imgTag = "<img src='shaman.png' />"
+			       } else if (toonItem.toonClass === "Rogue") {
+			                var imgTag = "<img src='rogue.png' />"
+			       } else if (toonItem.toonClass === "Priest") {
+			                var imgTag = "<img src='priest.png' />"
+			       } else if (toonItem.toonClass === "Mage") {
+			                var imgTag = "<img src='mage.png' />"
+			       } else if (toonItem.toonClass === "Hunter") {
+			                var imgTag = "<img src='hunter.png' />"
+			       }
+			       
+			    if (toonItem.role === "Tank") {
+        
+            
+            //Creates the listview data
+            var toonList = $("<li data-role='collapsible'></li>");
+            var toonListInfo = $(
+                imgTag +
+                "<h3>" + toonItem.characterName + "</h3>"+
+                "<h4>" + toonItem.serverName + "</h4>"+
+                "<p>" + toonItem.race + "</p>"+
+                "<p>" + toonItem.toonClass + "</p>"+
+                "<p>" + toonItem.role + "</p>"+
+                "<p>" + toonItem.specialization + "</p>"+
+                "<p>" + toonItem.level + "</p>"+
+                "<p>" + toonItem.itemLevel + "</p>"+
+                "<p>" + toonItem.professions + "</p>"+
+                "<p>" + toonItem.extraInfo + "</p>"
+            )
+            
+            
+            toonList.html(toonListInfo);
+            toonList.appendTo("#tankDisplay");
+        
+        } else if (toonItem.role === "Healer") {
+
+            var toonList = $("<li></li>");
+            var toonListInfo = $(
+                imgTag +
+                "<h3>" + toonItem.characterName + "</h3>"+
+                "<h4>" + toonItem.serverName + "</h4>"+
+                "<p>" + toonItem.race + "</p>"+
+                "<p>" + toonItem.toonClass + "</p>"+
+                "<p>" + toonItem.role + "</p>"+
+                "<p>" + toonItem.specialization + "</p>"+
+                "<p>" + toonItem.level + "</p>"+
+                "<p>" + toonItem.itemLevel + "</p>"+
+                "<p>" + toonItem.professions + "</p>"+
+                "<p>" + toonItem.extraInfo + "</p>"
+            )
+            
+            
+            toonList.html(toonListInfo);
+            toonList.appendTo("#healerDisplay"); 
+            
+        } else if (toonItem.role === "DPS") {
+
+            var toonList = $("<li></li>");
+            var toonListInfo = $(
+                imgTag +
+                "<h3>" + toonItem.characterName + "</h3>"+
+                "<h4>" + toonItem.serverName + "</h4>"+
+                "<p>" + toonItem.race + "</p>"+
+                "<p>" + toonItem.toonClass + "</p>"+
+                "<p>" + toonItem.role + "</p>"+
+                "<p>" + toonItem.specialization + "</p>"+
+                "<p>" + toonItem.level + "</p>"+
+                "<p>" + toonItem.itemLevel + "</p>"+
+                "<p>" + toonItem.professions + "</p>"+
+                "<p>" + toonItem.extraInfo + "</p>"
+            )
+            
+            
+            toonList.html(toonListInfo);
+            toonList.appendTo("#dpsDisplay"); 
+            
+        }
+        
+        $("#tankDisplay").listview('refresh');
+        $("#healerDisplay").listview('refresh');
+        $("#dpsDisplay").listview('refresh');
+        
+       });
+       
+       }
+
+	});
     
 });
 
