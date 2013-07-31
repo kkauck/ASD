@@ -8,10 +8,17 @@ $("#index").on("pageinit", function(){
     
     $.couch.db("toontracker").view("toontrackerdb/toons", {
 	    success: function(toonData) {
+<<<<<<< HEAD
 
 			$.each(toonData.rows, function(index, toonInfo) {
 				var toonItem = (toonInfo.value || toonInfo.doc);
 
+=======
+	    				    	
+			$.each(toonData.rows, function(index, toonInfo) {
+				var toonItem = (toonInfo.value || toonInfo.doc);
+				
+>>>>>>> master
 				if (toonItem.toonClass === "Warrior") {
 			            var imgTag = "<img src='warrior.png' />"
 			       } else if (toonItem.toonClass === "Paladin") {
@@ -35,7 +42,11 @@ $("#index").on("pageinit", function(){
 			       } else if (toonItem.toonClass === "Hunter") {
 			                var imgTag = "<img src='hunter.png' />"
 			       }
+<<<<<<< HEAD
 
+=======
+			       
+>>>>>>> master
 			    if (toonItem.role === "Tank") {
         
             
@@ -301,7 +312,11 @@ $(document).on("pageinit", "#editToon", function() {
 
 	    alert("Your toons data has been edited!");
 	    $.mobile.changePage("index.html");
+<<<<<<< HEAD
 
+=======
+	    
+>>>>>>> master
     };
 
 });
