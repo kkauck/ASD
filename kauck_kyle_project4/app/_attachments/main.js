@@ -293,7 +293,6 @@ $(document).on("pageinit", "#editToon", function() {
 		   
 		   success: function(data) {
 		   	   console.log (data)
-		   	   $.mobile.changePage("index.html");
 		   },
 		   error: function(status) {
 			   console.log (status)
@@ -301,6 +300,7 @@ $(document).on("pageinit", "#editToon", function() {
 	    });
 	    
 	    alert("Your toons data has been edited!");
+	    $.mobile.changePage("index.html");
 	    
     };
 	
