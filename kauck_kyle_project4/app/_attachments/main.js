@@ -6,43 +6,12 @@
 
 $("#index").on("pageinit", function(){
     
-    //Keeping code in case need to add in more information!
-    
-});
+    $.couch.db("toontracker").view("toontrackerdb/toons", {
+	    success: function(toonData) {
 
-$(document).on("pageinit", "#toon", function() {
-	
-	var urlData = $(this).data("url");
-	var urlParts = urlData.split("?");
-	var urlPairs = urlParts[1].split("&");
-	
-	var urlValues = {};
-	for (var i in urlPairs){
-		var keyValue = urlPairs[i].split("=");
-		var key = decodeURIComponent(keyValue[0]);
-		var value = decodeURIComponent(keyValue[1]);
-		urlValues[key] = value;
-	}
-	
-	var keyInfo = urlValues["toon"];
-	
-	$.couch.db("toontracker").view("toontrackerdb/toons", {
-	
-		key: keyInfo,
-		
-		success: function(toonData){
-		
 			$.each(toonData.rows, function(index, toonInfo) {
-				var toonItem = (toonInfo.value || toonInfo.doc)
-				
-				var toonDoc = {
-					"id"  : toonItem.id,
-					"rev" : toonItem.rev, 
-				};
-				
-				$("#deleteToon").attr("href", "delete.html?toon=" + toonItem.characterName)
-				$("#editMyToon").attr("href", "edit.html?toon=" + toonItem.characterName)
-				
+				var toonItem = (toonInfo.value || toonInfo.doc);
+
 				if (toonItem.toonClass === "Warrior") {
 			            var imgTag = "<img src='warrior.png' />"
 			       } else if (toonItem.toonClass === "Paladin") {
@@ -66,7 +35,143 @@ $(document).on("pageinit", "#toon", function() {
 			       } else if (toonItem.toonClass === "Hunter") {
 			                var imgTag = "<img src='hunter.png' />"
 			       }
-				
+
+			    if (toonItem.role === "Tank") {
+        
+            
+            //Creates the listview data
+            var toonList = $("<li data-role='collapsible'></li>");
+            var toonListInfo = $(
+                imgTag +
+                "<h3>" + toonItem.characterName + "</h3>"+
+                "<h4>" + toonItem.serverName + "</h4>"+
+                "<p>" + toonItem.race + "</p>"+
+                "<p>" + toonItem.toonClass + "</p>"+
+                "<p>" + toonItem.role + "</p>"+
+                "<p>" + toonItem.specialization + "</p>"+
+                "<p>" + toonItem.level + "</p>"+
+                "<p>" + toonItem.itemLevel + "</p>"+
+                "<p>" + toonItem.professions + "</p>"+
+                "<p>" + toonItem.extraInfo + "</p>"
+            )
+            
+            
+            toonList.html(toonListInfo);
+            toonList.appendTo("#tankDisplay");
+        
+        } else if (toonItem.role === "Healer") {
+
+            var toonList = $("<li></li>");
+            var toonListInfo = $(
+                imgTag +
+                "<h3>" + toonItem.characterName + "</h3>"+
+                "<h4>" + toonItem.serverName + "</h4>"+
+                "<p>" + toonItem.race + "</p>"+
+                "<p>" + toonItem.toonClass + "</p>"+
+                "<p>" + toonItem.role + "</p>"+
+                "<p>" + toonItem.specialization + "</p>"+
+                "<p>" + toonItem.level + "</p>"+
+                "<p>" + toonItem.itemLevel + "</p>"+
+                "<p>" + toonItem.professions + "</p>"+
+                "<p>" + toonItem.extraInfo + "</p>"
+            )
+            
+            
+            toonList.html(toonListInfo);
+            toonList.appendTo("#healerDisplay"); 
+            
+        } else if (toonItem.role === "DPS") {
+
+            var toonList = $("<li></li>");
+            var toonListInfo = $(
+                imgTag +
+                "<h3>" + toonItem.characterName + "</h3>"+
+                "<h4>" + toonItem.serverName + "</h4>"+
+                "<p>" + toonItem.race + "</p>"+
+                "<p>" + toonItem.toonClass + "</p>"+
+                "<p>" + toonItem.role + "</p>"+
+                "<p>" + toonItem.specialization + "</p>"+
+                "<p>" + toonItem.level + "</p>"+
+                "<p>" + toonItem.itemLevel + "</p>"+
+                "<p>" + toonItem.professions + "</p>"+
+                "<p>" + toonItem.extraInfo + "</p>"
+            )
+            
+            
+            toonList.html(toonListInfo);
+            toonList.appendTo("#dpsDisplay"); 
+            
+        }
+        
+        $("#tankDisplay").listview('refresh');
+        $("#healerDisplay").listview('refresh');
+        $("#dpsDisplay").listview('refresh');
+        
+       });
+       
+       }
+
+	});
+    
+});
+
+$(document).on("pageinit", "#toon", function() {
+
+	var urlData = $(this).data("url");
+	var urlParts = urlData.split("?");
+	var urlPairs = urlParts[1].split("&");
+
+	var urlValues = {};
+	for (var i in urlPairs){
+		var keyValue = urlPairs[i].split("=");
+		var key = decodeURIComponent(keyValue[0]);
+		var value = decodeURIComponent(keyValue[1]);
+		urlValues[key] = value;
+	}
+
+	var keyInfo = urlValues["toon"];
+
+	$.couch.db("toontracker").view("toontrackerdb/toons", {
+
+		key: keyInfo,
+
+		success: function(toonData){
+
+			$.each(toonData.rows, function(index, toonInfo) {
+				var toonItem = (toonInfo.value || toonInfo.doc)
+
+				var toonDoc = {
+					"id"  : toonItem.id,
+					"rev" : toonItem.rev, 
+				};
+
+				$("#deleteToon").attr("href", "delete.html?toon=" + toonItem.characterName)
+				$("#editMyToon").attr("href", "edit.html?toon=" + toonItem.characterName)
+
+				if (toonItem.toonClass === "Warrior") {
+			            var imgTag = "<img src='warrior.png' />"
+			       } else if (toonItem.toonClass === "Paladin") {
+			            var imgTag = "<img src='paladin.png' />"
+			       } else if (toonItem.toonClass === "Death Knight") {
+			               var imgTag = "<img src='deathknight.png' />"
+			       } else if (toonItem.toonClass === "Druid") {
+			                var imgTag = "<img src='druid.png' />"
+		           } else if (toonItem.toonClass === "Monk") {
+		                var imgTag = "<img src='monk.png' />"
+	    	       } else if (toonItem.toonClass === "Warlock") {
+			                var imgTag = "<img src='warlock.png' />"
+			       } else if (toonItem.toonClass === "Shaman") {
+			                var imgTag = "<img src='shaman.png' />"
+			       } else if (toonItem.toonClass === "Rogue") {
+			                var imgTag = "<img src='rogue.png' />"
+			       } else if (toonItem.toonClass === "Priest") {
+			                var imgTag = "<img src='priest.png' />"
+			       } else if (toonItem.toonClass === "Mage") {
+			                var imgTag = "<img src='mage.png' />"
+			       } else if (toonItem.toonClass === "Hunter") {
+			                var imgTag = "<img src='hunter.png' />"
+			       }
+
 				//$("#toonInfo").append(
 					//$("<li>").append(
 					var toonLI = $("<li></li>");
@@ -87,17 +192,17 @@ $(document).on("pageinit", "#toon", function() {
 			});
 			$("#toonInfo").listview('refresh');
 		}
-		
+
 	});
-	
+
 });
 
 $(document).on("pageinit", "#editToon", function() {
-	
+
 	var urlData = $(this).data("url");
 	var urlParts = urlData.split("?");
 	var urlPairs = urlParts[1].split("&");
-	
+
 	var urlValues = {};
 	for (var i in urlPairs){
 		var keyValue = urlPairs[i].split("=");
@@ -105,22 +210,22 @@ $(document).on("pageinit", "#editToon", function() {
 		var value = decodeURIComponent(keyValue[1]);
 		urlValues[key] = value;
 	}
-	
+
 	var keyInfo = urlValues["toon"];
-	
+
 	$.couch.db("toontracker").view("toontrackerdb/toons", {
-		
+
 		key: keyInfo,
 		success: function(toonData){
-			
+
 			$.each(toonData.rows, function(index, toonInfo) {
 				var toonItem = (toonInfo.value || toonInfo.doc)
-				
+
 				var doc = {
 					_id   : toonItem.id,
 					_rev  : toonItem.rev
 				}
-				
+
 				$("#editID").val(toonItem.id);
 				$("#editRev").val(toonItem.rev);
 				$("#editCharacterName").val(toonItem.characterName);
@@ -136,13 +241,13 @@ $(document).on("pageinit", "#editToon", function() {
 				$("#editItemLevel").val(toonItem.itemLevel);
 				$("#editProfessions").val(toonItem.professions);
 				$("#editExtraInfo").val(toonItem.extraInfo);
-				
-				
+
+
 			})
 		}
-		
+
 	});
-	
+
 	$("#toonEdit").validate({
         invalidHandler: function(form, validator) {
             $("#errors").empty();
@@ -153,7 +258,7 @@ $(document).on("pageinit", "#editToon", function() {
                 $("#errors").append("<span class='errorText'>" + errorLabel.text() +"</span>");
             };
         },
-		
+
         submitHandler: function() {
             var data = $("#toonEdit").serializeArray();
             editToon(data);
@@ -165,9 +270,9 @@ $(document).on("pageinit", "#editToon", function() {
     editToon = function (data) {
     
     	
-	    
+
 	    var toonEditData = {
-	   
+
 		    _id              : $("#editID").val(),
 		    _rev             : $("#editRev").val(),
 	    	characterName  : $("#editCharacterName").val(),
@@ -183,30 +288,30 @@ $(document).on("pageinit", "#editToon", function() {
             toonKey        : $("#toonKey").val() + $("#editCharacterName").val(),
             
 	    };
-	    
+
 	    $.couch.db("toontracker").saveDoc(toonEditData, {
-		   
+
 		   success: function(data) {
 		   	   console.log (data)
-		   	   $.mobile.changePage("index.html");
 		   },
 		   error: function(status) {
 			   console.log (status)
 		   }
 	    });
-	    
+
 	    alert("Your toons data has been edited!");
-	    
+	    $.mobile.changePage("index.html");
+
     };
-	
+
 });
 
 $(document).on("pageinit", "#delete", function (){
-	
+
 	var urlData = $(this).data("url");
 	var urlParts = urlData.split("?");
 	var urlPairs = urlParts[1].split("&");
-	
+
 	var urlValues = {};
 	for (var i in urlPairs){
 		var keyValue = urlPairs[i].split("=");
@@ -214,31 +319,31 @@ $(document).on("pageinit", "#delete", function (){
 		var value = decodeURIComponent(keyValue[1]);
 		urlValues[key] = value;
 	}
-	
+
 	var keyInfo = urlValues["toon"];
-	
+
 	$.couch.db("toontracker").view("toontrackerdb/toons", {
-		
+
 		key: keyInfo,
 		success: function(toonData){
-			
+
 			$.each(toonData.rows, function(index, toonInfo) {
 				var toonItem = (toonInfo.value || toonInfo.doc)
-				
+
 				var doc = {
 					_id   : toonItem.id,
 					_rev  : toonItem.rev
 				}
-				
-				
+
+
 				//Displays name at the top of the page
 				$("#deleteName").html("Please confirm you would like to delete " + toonItem.characterName)
-				
+
 				//Popluates the delete form!
 				$("#toonName").val(toonItem.characterName);
 				$("#toonID").val(toonItem.id);
 				$("#toonRev").val(toonItem.rev);
-				
+
 				$(".deleteThisToon").on("click", function (){
 
 			        var confirmDelete = confirm("Please confirm that you would like to delete " + toonItem.characterName);
@@ -255,11 +360,11 @@ $(document).on("pageinit", "#delete", function (){
 			                $.mobile.changePage("index.html");
 			            }
 			     })
-				
+
 			});
 		}
 	});
-	
+
 });
 
 $("#addCharacter").on("pageinit", function() {
@@ -274,7 +379,7 @@ $("#addCharacter").on("pageinit", function() {
                 $("#errors").append("<span class='errorText'>" + errorLabel.text() +"</span>");
             };
         },
-		
+
         submitHandler: function() {
             var data = $("#characterAdd").serializeArray();
             toonStorage(data);
@@ -284,9 +389,9 @@ $("#addCharacter").on("pageinit", function() {
     });
     
     toonStorage = function (data) {
-	    
+
 	    var toonData = {
-	   
+
 	    	"characterName"  : $("#characterName").val(),
 	    	"serverName"     : $("#serverName").val(),
             "race"           : $("#race").val(),
@@ -300,9 +405,9 @@ $("#addCharacter").on("pageinit", function() {
             "toonKey"        : $("#toonKey").val() + $("#characterName").val(),
             
 	    };
-	    
+
 	    $.couch.db("toontracker").saveDoc(toonData, {
-		   
+
 		   success: function(data) {
 		   	   console.log (data)
 		   },
@@ -310,9 +415,9 @@ $("#addCharacter").on("pageinit", function() {
 			   console.log (status)
 		   }
 	    });
-	    
+
 	    alert("Your data has been saved to the Database!");
-	    
+
     };
     
     /*storeToon = function (data) {
@@ -356,20 +461,20 @@ $("#display").on("pageinit", function () {
 
 	var docs = [];
 	console.log(docs)
-	
+
 	$.couch.db("toontracker").view("toontrackerdb/toons", {
 	    success: function(toonData) {
-	    				    	
+
 			$.each(toonData.rows, function(index, toonInfo) {
 				var toonItem = (toonInfo.value || toonInfo.doc);
-				
+
 				var docInfo = {
 					_id: toonItem.id,
 					_rev: toonItem.rev
 				}
-				
+
 				docs.push(docInfo);
-				
+
 				$("#toonDisplay").append(
 					$("<li>").append(
 				    	$("<a>")
@@ -381,16 +486,16 @@ $("#display").on("pageinit", function () {
 		    $("#toonDisplay").listview("refresh");
 		 }
 	});
-	
+
 	$("#clearData").on("click", function() {
-	
+
 		if(docs.length === 0) {
 			alert("Sorry you have no data saved to the database");
 		} else {
-	
+
 			var confirmMassDelete = confirm("Please confirm that you would like to delete all data from database!");
 			if(confirmMassDelete) {
-			
+
 				$.couch.db("toontracker").bulkRemove({"docs": docs}, {
 					success: function(data) {
 						alert("All data was successfully deleted from the database!");
